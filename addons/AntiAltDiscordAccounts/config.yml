@@ -1,0 +1,37 @@
+﻿AntiAltDiscordAccounts:
+  Enabled: true
+  MinimumAccountAge: "30d"
+  Action: "quarantine"
+  LogChannelID: "1508565869876482076"
+  QuarantineRoleID: ""
+  IgnoreBots: true
+  BypassUserIDs: []
+  BypassRoleIDs: []
+
+  StrictJoinGate:
+    Enabled: true
+    # suspicious = only risky joins are quarantined.
+    # all = every new join is quarantined until staff reviews them.
+    Mode: "all"
+    RiskScoreThreshold: 60
+    AutoCreateQuarantineRole: true
+    QuarantineRoleName: "Quarantine"
+    LockdownChannels: true
+    LockdownRefresh: "30m"
+    Rules:
+      NoAvatar: true
+      DuplicateName: true
+      JoinBurst:
+        Enabled: true
+        Window: "10m"
+        MaxJoins: 3
+        AccountMaxAge: "30d"
+
+  DM:
+    Enabled: true
+    Message: "Your Discord account needs staff review before you can access DragonsHosting. This is an anti-alt safety check. Please contact staff if this is a mistake."
+
+  LogEmbed:
+    Title: "Anti-alt account flagged"
+    Color: "#ED4245"
+    Footer: "DragonsHosting Anti Alt"

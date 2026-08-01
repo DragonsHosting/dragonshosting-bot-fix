@@ -1,0 +1,304 @@
+﻿# ===========================================================================
+# MODERATION SYSTEM CONFIGURATION
+# ===========================================================================
+
+# ===========================================================================
+# MODERATION ROLES
+# Supports multiple role IDs for different guilds. Add role IDs from each guild to the arrays.
+# ===========================================================================
+ModerationRoles:
+  reminder: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  addrole: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  roleall: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  ban: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  tempban: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  clearchannel: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  clearhistory: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  cleartimeout: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  embed: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  history: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  kick: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  poll: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  purge: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  removerole: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  setnote: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  viewnote: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  slowmode: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  timeout: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  unban: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  warn: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  unwarn: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  temprole: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  nickname: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+  blacklist: ["1505816343406968903", "1506340973029101679", "1236762271712280656"]
+
+# ===========================================================================
+# WARNING SYSTEM
+# ===========================================================================
+Warnings:
+  Expiry: 30d # 1d 15m = 1 day 15 minutes
+
+  Punishments: 
+    1: 
+      Timeout: "" # Leave blank for no punishment
+    2: 
+      Timeout: "10m"
+    3: 
+      Timeout: "15m" # Supports up to 30 days
+    4:
+      Kick: true # Kick the user
+
+# ===========================================================================
+# AUTO KICK SYSTEM
+# ===========================================================================
+AutoKick: 
+ Enabled: false
+ Time: 10s # 1h 15s = 1 hour 15 seconds, 10m 15s = 10 minute 15 seconds
+ Role: ["ROLE_ID", "ROLE_ID"] # The user needs to have one of these roles to not get kicked
+ DM:
+   Enabled: true
+   Embed:
+     Title: "⚠️ Verification Failure ⚠️"
+     Description: 
+       - "🚫 **Notice:** You failed to verify within the given amount of time."
+       - "Please rejoin and verify to remain in our server. discord.gg/DragonsHosting"
+     Color: "#1769FF"
+     Footer: "Automatic Kick | DragonsHosting Bot"
+
+# ===========================================================================
+# ALT PREVENTION SYSTEM
+# ===========================================================================
+AltPrevention:
+  Enabled:  false
+  TimeLimit: "30d"
+  KickAlts: false
+
+  DM:
+    Enabled: true
+    Embed:
+      Title: "⚠️ Alt Account Alert ⚠️"
+      Description:
+        - "🚫 **Notice:** Your account is too new to join {guildName}."
+        - "🕒 **Account Age:** {user-createdAt}"
+        - "🛑 **Required Age:** 30 days"
+        - "Please return when your account meets the age requirement."
+        - "**📅 Detection Date:** {longTime}"
+      Footer:
+        Text: "Alt Detection System | {guildName}"
+        Icon: "{guildIcon}"
+      Author:
+        Text: "{userName}"
+        Icon: "{user-avatar}"
+      Color: "#1769FF"
+      Image: "{userBanner}"
+      Thumbnail: "{user-avatar}"
+
+  Log:
+    LogsChannelID: ["CHANNEL_ID"] # Supports multiple channel IDs for different guilds
+    Title: "⚠️ Potential Alt Account Detected ⚠️"
+    Description:
+      - "**👤 User:** {user} (ID: {userId})"
+      - "🕒 **Account Age:** {user-createdAt}"
+      - "**👢 Kicked:** {kickStatus}"
+      - "🛑 **Required Age:** 30 days"
+      - "**📅 Detection Date:** {longTime}, {shortTime}"
+    Footer:
+      Text: "Alt Detection System | {guildName}"
+      Icon: "{guildIcon}"
+    Author:
+      Text: "{userName}"
+      Icon: "{user-avatar}"
+    Color: "#1769FF"
+    Image: "{userBanner}"
+    Thumbnail: "{user-avatar}"
+
+# ===========================================================================
+# BLACKLIST WORDS SYSTEM
+# ===========================================================================
+BlacklistWords:
+  Enabled: false
+  Patterns:
+    - "example.net"        # Exact match
+    - "*badword*"          # Matches badword anywhere in the string
+    - "regex:\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b"  # Email regex
+    - "regex:\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b" # IP Address regex
+  WhitelistWords:
+    - "discord.gg/DragonsHosting"
+  WhitelistChannels: ["CHANNEL_ID"] # Supports multiple channel IDs for different guilds
+  WhitelistCategories: ["CATEGORY_ID"] # Supports multiple category IDs for different guilds
+  BypassPerms: ["ManageMessages"]
+  BypassRoles: ["ROLE_ID"] # Supports multiple role IDs for different guilds
+  Message: "{user}, you used a blacklisted word!"
+  DM:
+    Enabled: true
+    Message: "Hello {user}, you sent a blacklisted word, **{blacklistedword}**. \n Please refrain from doing so in the future."
+    Type: Message # Message, Embed
+    Embed:
+      Title: "🚫 Blacklisted Word Detected"
+      Description:
+        - "Hello {user}, you sent a blacklisted word"
+        - "🔍 **Blacklisted Word:** {blacklistedword}"
+        - "🚫 **Action:** Your message was deleted"
+        - "**🕰️ Time:** {longtime}, {shorttime}"
+      Color: "#1769FF"
+      Footer: "DragonsHosting Bot | {shorttime}"
+      Thumbnail: true
+  LogsChannelID: ["CHANNEL_ID"] # Supports multiple channel IDs for different guilds
+  Embed:
+    Title: "🚫 Blacklisted Word Detection"
+    Description:
+      - "🚨 **Alert:** {user} used a blacklisted word"
+      - "🔍 **Offending Word:** {blacklistedword}"
+      - "🚫 **Consequence:** Message was removed"
+      - "**🕰️ Timestamp:** {longtime}, {shorttime}"
+    Footer:
+      Text: "DragonsHosting Bot | {guildName}"
+      Icon: "{guildIcon}"
+    Author:
+      Text: ""
+      Icon: ""
+    Color: "#1769FF"
+    Image: "{userBanner}"
+    Thumbnail: ""
+
+# ===========================================================================
+# ANTI NUKE SYSTEM
+# ===========================================================================
+AntiNuke:
+  Enabled: false # Should AntiNuke be enabled?
+  WhitelistedRoles: ["ROLE_ID1", "ROLE_ID2"] # Supports multiple role IDs for different guilds
+
+  Default: # This applies to everyone that has any power in the discord (Timeout, kick, ban, manage server, etc)
+    Tiers:
+      Tier1: # First tier
+        Protection:
+          kickThreshold: 2
+          banThreshold: 2
+          channelDeleteThreshold: 2
+          roleDeleteThreshold: 2
+          duration: "10s" # Time window to assess activity levels
+        Actions:
+          notify: ["USER_ID1", "USER_ID2"] # User IDs to notify
+          removeRole: false # Remove the user's role with moderation permissions
+          mute: true # The bot can't mute if they have admin
+          ban: false
+        Logs:
+          Enabled: true
+          Embed:
+            Title: "Anti Nuke - Tier 1"
+            Description:
+              - "👤 **User:** {user}"
+              - "🔍 **Trigger:** {threshold}"
+              - "🚫 **Amount:** {threshold_amount}"
+              - "**📅 Date:** {timestamp}"
+            Color: "#1769FF"
+            Footer: "Anti Nuke | DragonsHosting Bot"
+            Thumbnail: true
+            LogsChannelID: ["CHANNEL_ID"] # Supports multiple channel IDs for different guilds. Set to [""] to disable
+
+      Tier2: # Second tier with stricter thresholds and actions - Continues from Tier 1
+        Protection:
+          kickThreshold: 4 # 2 more kicks than tier 1
+          banThreshold: 4
+          channelDeleteThreshold: 4
+          roleDeleteThreshold: 4
+          duration: "20s" # Time window to assess activity levels
+        Actions:
+          notify: ["USER_ID1", "USER_ID2"] # User IDs to notify
+          removeRole: true # Remove the user's role with moderation permissions
+          mute: false
+          ban: false
+        Logs:
+          Enabled: true
+          Embed:
+            Title: "Anti Nuke - Tier 2"
+            Description:
+              - "👤 **User:** {user}"
+              - "🔍 **Trigger:** {threshold}"
+              - "🚫 **Amount:** {threshold_amount}"
+              - "**📅 Date:** {timestamp}"
+            Color: "#1769FF"
+            Footer: "Anti Nuke | DragonsHosting Bot"
+            Thumbnail: true
+            LogsChannelID: ["CHANNEL_ID"] # Supports multiple channel IDs for different guilds
+
+        # Supports unlimited tiers
+
+# ===========================================================================
+# ANTI HOIST SYSTEM
+# ===========================================================================
+AntiHoist:
+  EnableOnUserJoin: false # Enable Anti Hosting when a user joins the server
+  EnableOnUserUpdate: false # Enable Anti Hosting when a user edits their server profile
+  DefaultDisplayName: zName # If the users display name is only disallowed characters it will make it this
+  AllowRoles: ["ROLE_ID"] # Supports multiple role IDs for different guilds
+  DisallowedCharacters: ['-', '_', '!', '?', '.', '"'] # Characters to be removed from the beginning of the users display name
+  LogsChannelID: ["CHANNEL_ID"] # Supports multiple channel IDs for different guilds
+  LogEmbed:
+    Title: "☢️ Changed Users Nickname"
+    Description: 
+      - "**👤 User:** {user}"
+      - "🟥 **Old Display Name:** `{oldDisplayName}`"
+      - "🟩 **New Display Name:** `{newDisplayName}`"
+    Color: "#1769FF"
+    Footer: "Anti Hoist System | DragonsHosting Bot"
+    Thumbnail: true
+
+# ===========================================================================
+# ANTI USER MASS MENTION
+# ===========================================================================
+AntiMassMention:
+  Enabled: false
+  Amount: 5 # Amount of user mentions in one message before it's considered mass mention
+  BypassPerms: ["ManageMessages"]
+  BypassRoles: ["ROLE_ID"] # Supports multiple role IDs for different guilds
+  Message: "{user}, mass mentions are not permitted here!"
+  TimeoutUser: true # Timeout user if they mass mention?
+  TimeoutTime: 5m # Timeout time if TimeoutUser is set to true
+  LogsChannelID: ["CHANNEL_ID"] # Supports multiple channel IDs for different guilds
+  SendDM: true
+  DirectMessage: "{user} you have been muted for {time} for mass mentioning users."
+
+# ===========================================================================
+# ANTI SPAM SYSTEM
+# ===========================================================================
+AntiSpam:
+  Enabled: false
+  MsgLimit: 4 # The amount of messages that have be sent in the time specified below for it to be considered spam
+  TimeLimit: "1s"
+  BypassPerms: ["ManageMessages"]
+  BypassRoles: ["ROLE_ID"] # Supports multiple role IDs for different guilds
+  Message: "{user}, spamming is not permitted here!"
+  TimeoutUser: true # Timeout user if they spam?
+  TimeoutTime: 5m # Timeout time if TimeoutUser is set to true
+  LogsChannelID: ["CHANNEL_ID"] # Supports multiple channel IDs for different guilds
+  SendDM: true
+  DirectMessage: "{user}  {time} for spamming."
+
+# ===========================================================================
+# REPORT SYSTEM
+# ===========================================================================
+Report:
+  LogsChannelID: ["CHANNEL_ID"] # Supports multiple channel IDs for different guilds
+  Embed:
+    Title: "📢 New Report"
+    Description:
+      - "### Reported Message"
+      - "**User:** {user}"
+      - "**Content:** {message}"
+      - "**Channel:** {channel}"
+      - "**[Jump to Message]({messageUrl})**"
+      - ""
+      - "### Report Details"
+      - "**Reporter:** {reportingUser}"
+      - "**Reason:** {reason}"
+      - "**Date:** {timestamp}"
+    Footer:
+      Text: "Report System | DragonsHosting Bot"
+      Icon: "{guildIcon}"
+    Author:
+      Text: ""
+      Icon: ""
+    Color: "#FF4B4B"
+    Image: ""
+    Thumbnail: "{guildIcon}" # {guildIcon} - Displays the guild icon

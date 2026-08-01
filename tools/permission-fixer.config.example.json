@@ -1,0 +1,112 @@
+{
+  "guildId": "1482512038788993034",
+  "roles": [
+    {
+      "name": "Owner",
+      "color": "#ff0000",
+      "hoist": true,
+      "mentionable": false,
+      "permissions": ["Administrator"]
+    },
+    {
+      "name": "Admin",
+      "color": "#ff6600",
+      "hoist": true,
+      "mentionable": false,
+      "permissions": ["Administrator"]
+    },
+    {
+      "name": "Manager",
+      "color": "#ffaa00",
+      "hoist": true,
+      "mentionable": false,
+      "permissions": [
+        "ManageGuild",
+        "ManageChannels",
+        "ManageRoles",
+        "ManageMessages",
+        "ModerateMembers",
+        "KickMembers",
+        "BanMembers",
+        "ViewAuditLog",
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory"
+      ]
+    },
+    {
+      "name": "Support",
+      "color": "#2f80ed",
+      "hoist": true,
+      "mentionable": true,
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "ManageMessages",
+        "ModerateMembers"
+      ]
+    },
+    {
+      "name": "Member",
+      "color": "#57f287",
+      "hoist": false,
+      "mentionable": false,
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak"
+      ]
+    },
+    {
+      "name": "Muted",
+      "color": "#747f8d",
+      "hoist": false,
+      "mentionable": false,
+      "permissions": ["ViewChannel", "ReadMessageHistory"]
+    }
+  ],
+  "categoryRules": [
+    {
+      "match": "ticket",
+      "overwrites": [
+        { "target": "@everyone", "deny": ["ViewChannel"] },
+        { "target": "Support", "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "AttachFiles", "EmbedLinks", "ManageMessages"] }
+      ],
+      "syncChildren": true
+    },
+    {
+      "match": "staff",
+      "overwrites": [
+        { "target": "@everyone", "deny": ["ViewChannel"] },
+        { "target": "Support", "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "AttachFiles", "EmbedLinks"] },
+        { "target": "Manager", "allow": ["ViewChannel", "SendMessages", "ReadMessageHistory", "ManageMessages"] }
+      ],
+      "syncChildren": true
+    }
+  ],
+  "channelRules": [
+    {
+      "match": "rules",
+      "overwrites": [
+        { "target": "@everyone", "allow": ["ViewChannel", "ReadMessageHistory"], "deny": ["SendMessages"] }
+      ]
+    },
+    {
+      "match": "announcements",
+      "overwrites": [
+        { "target": "@everyone", "allow": ["ViewChannel", "ReadMessageHistory"], "deny": ["SendMessages"] },
+        { "target": "Manager", "allow": ["SendMessages", "ManageMessages"] }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1685 @@
+{
+  "guildId": "1487117401261871295",
+  "roles": [
+    {
+      "name": "????????????",
+      "permissions": [],
+      "id": "1487117758356258976"
+    },
+    {
+      "name": "???ceo",
+      "permissions": [
+        "Administrator"
+      ],
+      "id": "1487117769811038228"
+    },
+    {
+      "name": "???Hoofd Manager",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers",
+        "KickMembers",
+        "BanMembers",
+        "ManageChannels",
+        "ManageGuild",
+        "ManageRoles",
+        "ViewAuditLog",
+        "ManageWebhooks",
+        "ManageThreads",
+        "ManageEvents",
+        "MuteMembers",
+        "DeafenMembers",
+        "MoveMembers"
+      ],
+      "id": "1487117773199900703"
+    },
+    {
+      "name": "?? | Admin",
+      "permissions": [
+        "Administrator"
+      ],
+      "id": "1487117776509206658"
+    },
+    {
+      "name": "?? | Staff Manager",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers",
+        "KickMembers",
+        "BanMembers",
+        "ManageChannels",
+        "ManageGuild",
+        "ManageRoles",
+        "ViewAuditLog",
+        "ManageWebhooks",
+        "ManageThreads",
+        "ManageEvents",
+        "MuteMembers",
+        "DeafenMembers",
+        "MoveMembers"
+      ],
+      "id": "1487117781899022446"
+    },
+    {
+      "name": "?? |  Bot",
+      "permissions": [
+        "Administrator"
+      ],
+      "id": "1487117833606529167"
+    },
+    {
+      "name": "Dragons Hosting",
+      "permissions": [
+        "Administrator"
+      ],
+      "id": "1530653166998392984"
+    },
+    {
+      "name": "Quark Logger",
+      "permissions": [
+        "Administrator"
+      ],
+      "id": "1487119671130853509"
+    },
+    {
+      "name": "???Manager",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers",
+        "KickMembers",
+        "BanMembers",
+        "ManageChannels",
+        "ManageRoles",
+        "ViewAuditLog",
+        "ManageThreads"
+      ],
+      "id": "1490695609206706427"
+    },
+    {
+      "name": "?? | Manager Support",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers",
+        "KickMembers",
+        "BanMembers",
+        "ManageChannels",
+        "ManageRoles",
+        "ViewAuditLog",
+        "ManageThreads"
+      ],
+      "id": "1487117782905520219"
+    },
+    {
+      "name": "??| Manager  Marketing",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers",
+        "KickMembers",
+        "BanMembers",
+        "ManageChannels",
+        "ManageRoles",
+        "ViewAuditLog",
+        "ManageThreads"
+      ],
+      "id": "1487117783413035041"
+    },
+    {
+      "name": "??| Manager Entertainement",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseApplicationCommands",
+        "ManageEvents",
+        "CreateEvents"
+      ],
+      "id": "1487117784851943466"
+    },
+    {
+      "name": "?? | Manager Media",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers",
+        "KickMembers",
+        "BanMembers",
+        "ManageChannels",
+        "ManageRoles",
+        "ViewAuditLog",
+        "ManageThreads"
+      ],
+      "id": "1487117786139328563"
+    },
+    {
+      "name": "?????| Manager Builders",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseApplicationCommands",
+        "ManageMessages"
+      ],
+      "id": "1487117786965606461"
+    },
+    {
+      "name": "??? | Manager Technisch",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers",
+        "KickMembers",
+        "BanMembers",
+        "ManageChannels",
+        "ManageRoles",
+        "ViewAuditLog",
+        "ManageThreads"
+      ],
+      "id": "1487117787968049326"
+    },
+    {
+      "name": "? Teamleiders",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers",
+        "KickMembers",
+        "BanMembers",
+        "ManageChannels",
+        "ManageRoles",
+        "ViewAuditLog",
+        "ManageThreads"
+      ],
+      "id": "1487117789050310767"
+    },
+    {
+      "name": "? Staff-team",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers"
+      ],
+      "id": "1487117794033008781"
+    },
+    {
+      "name": "Afgemeld",
+      "permissions": [
+        "ViewChannel",
+        "ReadMessageHistory"
+      ],
+      "id": "1487117795052486720"
+    },
+    {
+      "name": "???Sr. moderator",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers",
+        "KickMembers",
+        "BanMembers"
+      ],
+      "id": "1487117796285616350"
+    },
+    {
+      "name": "???Moderator",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers",
+        "KickMembers"
+      ],
+      "id": "1487117797371674874"
+    },
+    {
+      "name": "???Jr. Moderator",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers"
+      ],
+      "id": "1487117798491558021"
+    },
+    {
+      "name": "????H-Developer",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers",
+        "ManageWebhooks"
+      ],
+      "id": "1490669576965324861"
+    },
+    {
+      "name": "????Developer",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers"
+      ],
+      "id": "1487117799519158364"
+    },
+    {
+      "name": "???Marketing Team",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers"
+      ],
+      "id": "1487117804606980249"
+    },
+    {
+      "name": "???Ticket Support",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "ManageMessages",
+        "ModerateMembers"
+      ],
+      "id": "1487117807417036850"
+    },
+    {
+      "name": "???Geschorst",
+      "permissions": [
+        "ViewChannel",
+        "ReadMessageHistory"
+      ],
+      "id": "1487117809304604834"
+    },
+    {
+      "name": "??| Permanent Ontslagen",
+      "permissions": [],
+      "id": "1487117810722275460"
+    },
+    {
+      "name": "???Sponsor",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "CreatePublicThreads",
+        "SendMessagesInThreads"
+      ],
+      "id": "1487117813004112053"
+    },
+    {
+      "name": "Content Creator",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "CreatePublicThreads",
+        "SendMessagesInThreads"
+      ],
+      "id": "1487117815873011783"
+    },
+    {
+      "name": "PartnerAccount",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "CreatePublicThreads",
+        "SendMessagesInThreads"
+      ],
+      "id": "1487117777595666462"
+    },
+    {
+      "name": "???Partner Groot",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "CreatePublicThreads",
+        "SendMessagesInThreads"
+      ],
+      "id": "1487117818628673778"
+    },
+    {
+      "name": "???Partner Middel",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "CreatePublicThreads",
+        "SendMessagesInThreads"
+      ],
+      "id": "1487117819698085968"
+    },
+    {
+      "name": "???Partner Klein",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "CreatePublicThreads",
+        "SendMessagesInThreads"
+      ],
+      "id": "1487117820826353747"
+    },
+    {
+      "name": "???Partner",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "CreatePublicThreads",
+        "SendMessagesInThreads"
+      ],
+      "id": "1487117821610557594"
+    },
+    {
+      "name": "?Members",
+      "permissions": [
+        "ViewChannel",
+        "ReadMessageHistory"
+      ],
+      "id": "1487117831551058102"
+    },
+    {
+      "name": "?????English",
+      "permissions": [],
+      "id": "1487117847078506608"
+    },
+    {
+      "name": "?????Nederlands",
+      "permissions": [],
+      "id": "1487117848362094643"
+    },
+    {
+      "name": "Server Booster",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "CreatePublicThreads",
+        "SendMessagesInThreads"
+      ],
+      "id": "1490448420186492949"
+    },
+    {
+      "name": "Ticket Support",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "CreatePublicThreads",
+        "SendMessagesInThreads"
+      ],
+      "id": "1490479705869123614"
+    },
+    {
+      "name": "Unban Coordinator",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "CreatePublicThreads",
+        "SendMessagesInThreads"
+      ],
+      "id": "1490479707987251302"
+    },
+    {
+      "name": "Bug Support",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "CreatePublicThreads",
+        "SendMessagesInThreads"
+      ],
+      "id": "1490479709878878380"
+    },
+    {
+      "name": "Player Reports",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "AttachFiles",
+        "EmbedLinks",
+        "UseExternalEmojis",
+        "AddReactions",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "UseApplicationCommands",
+        "CreatePublicThreads",
+        "SendMessagesInThreads"
+      ],
+      "id": "1490479711216865462"
+    },
+    {
+      "name": "DISBOARD.org",
+      "permissions": [
+        "ViewChannel",
+        "SendMessages",
+        "EmbedLinks"
+      ],
+      "id": "1490667949852197005"
+    },
+    {
+      "name": "Top.gg",
+      "permissions": [],
+      "id": "1531395691807772695"
+    },
+    {
+      "name": "???Giveaway Ping",
+      "permissions": [],
+      "id": "1530679054599061616"
+    },
+    {
+      "name": "???Informatie Ping",
+      "permissions": [],
+      "id": "1530679059204538521"
+    },
+    {
+      "name": "???Sollicitatie Ping",
+      "permissions": [],
+      "id": "1530679063486791700"
+    },
+    {
+      "name": "??Q&A Ping",
+      "permissions": [],
+      "id": "1530679067391557735"
+    },
+    {
+      "name": "???Event Ping",
+      "permissions": [],
+      "id": "1530679071694917743"
+    },
+    {
+      "name": "???Update Ping",
+      "permissions": [],
+      "id": "1530679075830632499"
+    },
+    {
+      "name": "???SneakPeek Ping",
+      "permissions": [],
+      "id": "1530679080242905241"
+    }
+  ],
+  "categoryRules": [
+    {
+      "name": "?? Server Statistics",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "allow": [
+            "ViewChannel",
+            "ReadMessageHistory"
+          ],
+          "deny": [
+            "SendMessages",
+            "CreatePublicThreads",
+            "CreatePrivateThreads",
+            "SendMessagesInThreads"
+          ]
+        },
+        {
+          "target": "1487117794033008781",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117859917402223"
+    },
+    {
+      "name": "SERVER STATUS",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "allow": [
+            "ViewChannel",
+            "ReadMessageHistory"
+          ],
+          "deny": [
+            "SendMessages",
+            "CreatePublicThreads",
+            "CreatePrivateThreads",
+            "SendMessagesInThreads"
+          ]
+        },
+        {
+          "target": "1487117794033008781",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117861418827876"
+    },
+    {
+      "name": "welkom",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "allow": [
+            "ViewChannel",
+            "ReadMessageHistory"
+          ],
+          "deny": [
+            "SendMessages",
+            "CreatePublicThreads",
+            "CreatePrivateThreads",
+            "SendMessagesInThreads"
+          ]
+        },
+        {
+          "target": "1487117794033008781",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117863008469155"
+    },
+    {
+      "name": "Rules",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "allow": [
+            "ViewChannel",
+            "ReadMessageHistory"
+          ],
+          "deny": [
+            "SendMessages",
+            "CreatePublicThreads",
+            "CreatePrivateThreads",
+            "SendMessagesInThreads"
+          ]
+        },
+        {
+          "target": "1487117794033008781",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117865122267257"
+    },
+    {
+      "name": "belangrijk",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "allow": [
+            "ViewChannel",
+            "ReadMessageHistory"
+          ],
+          "deny": [
+            "SendMessages",
+            "CreatePublicThreads",
+            "CreatePrivateThreads",
+            "SendMessagesInThreads"
+          ]
+        },
+        {
+          "target": "1487117794033008781",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117866208727184"
+    },
+    {
+      "name": "Support",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "allow": [
+            "ViewChannel",
+            "ReadMessageHistory"
+          ],
+          "deny": [
+            "SendMessages",
+            "CreatePublicThreads",
+            "CreatePrivateThreads",
+            "SendMessagesInThreads"
+          ]
+        },
+        {
+          "target": "1487117794033008781",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117782905520219",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages",
+            "ManageChannels"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117867273949225"
+    },
+    {
+      "name": "chat kanalen",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "UseExternalEmojis",
+            "AddReactions",
+            "UseApplicationCommands",
+            "CreatePublicThreads",
+            "SendMessagesInThreads"
+          ]
+        },
+        {
+          "target": "1487117809304604834",
+          "deny": [
+            "SendMessages",
+            "CreatePublicThreads",
+            "CreatePrivateThreads",
+            "SendMessagesInThreads",
+            "AddReactions",
+            "Speak"
+          ]
+        },
+        {
+          "target": "1487117794033008781",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117868230512791"
+    },
+    {
+      "name": "praat kanalen",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "allow": [
+            "ViewChannel",
+            "Connect",
+            "Speak",
+            "Stream",
+            "UseVAD"
+          ]
+        },
+        {
+          "target": "1487117809304604834",
+          "deny": [
+            "Connect",
+            "Speak",
+            "Stream"
+          ]
+        },
+        {
+          "target": "1487117794033008781",
+          "allow": [
+            "ViewChannel",
+            "Connect",
+            "Speak",
+            "Stream",
+            "MuteMembers",
+            "DeafenMembers",
+            "MoveMembers"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117869777948732"
+    },
+    {
+      "name": "partner kanalen",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "allow": [
+            "ViewChannel",
+            "ReadMessageHistory"
+          ],
+          "deny": [
+            "SendMessages"
+          ]
+        },
+        {
+          "target": "1487117821610557594",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks"
+          ]
+        },
+        {
+          "target": "1487117820826353747",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks"
+          ]
+        },
+        {
+          "target": "1487117819698085968",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks"
+          ]
+        },
+        {
+          "target": "1487117818628673778",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks"
+          ]
+        },
+        {
+          "target": "1487117804606980249",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117783413035041",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117870700957929"
+    },
+    {
+      "name": "staff",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "target": "1487117794033008781",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "UseApplicationCommands"
+          ]
+        },
+        {
+          "target": "1487117789050310767",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117781899022446",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages",
+            "ManageChannels"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117876367200437"
+    },
+    {
+      "name": "Marketing Team",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "target": "1487117804606980249",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks"
+          ]
+        },
+        {
+          "target": "1487117783413035041",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117781899022446",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117879030583319"
+    },
+    {
+      "name": "Developers",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "target": "1487117799519158364",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks"
+          ]
+        },
+        {
+          "target": "1490669576965324861",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117787968049326",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117781899022446",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117883178877111"
+    },
+    {
+      "name": "Teamleider",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "target": "1487117789050310767",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117781899022446",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117884365996092"
+    },
+    {
+      "name": "Eigenaren | DragonsHosting",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "target": "1487117769811038228",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages",
+            "ManageChannels"
+          ]
+        },
+        {
+          "target": "1487117773199900703",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117781899022446",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117885062123675"
+    },
+    {
+      "name": "???logs",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "target": "1487117794033008781",
+          "allow": [
+            "ViewChannel",
+            "ReadMessageHistory"
+          ]
+        },
+        {
+          "target": "1487117789050310767",
+          "allow": [
+            "ViewChannel",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117781899022446",
+          "allow": [
+            "ViewChannel",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117833606529167",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "ManageWebhooks"
+          ]
+        },
+        {
+          "target": "1487119671130853509",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "EmbedLinks",
+            "AttachFiles",
+            "ManageWebhooks"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117886488182784"
+    },
+    {
+      "name": "Staff aannemen",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "target": "1487117794033008781",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "UseApplicationCommands"
+          ]
+        },
+        {
+          "target": "1487117789050310767",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117781899022446",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages",
+            "ManageChannels"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1487117887444488213"
+    },
+    {
+      "name": "Purchase",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "target": "1490479705869123614",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117782905520219",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages",
+            "ManageChannels"
+          ]
+        },
+        {
+          "target": "1487117781899022446",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1531578377490927706"
+    },
+    {
+      "name": "General Questions",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "target": "1490479705869123614",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117782905520219",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages",
+            "ManageChannels"
+          ]
+        },
+        {
+          "target": "1487117781899022446",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1490480481534480655"
+    },
+    {
+      "name": "Bug Tickets",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "target": "1490479709878878380",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1490479705869123614",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117782905520219",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1490480485145772273"
+    },
+    {
+      "name": "Player Report",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "target": "1490479711216865462",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1490479705869123614",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "AttachFiles",
+            "EmbedLinks",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117782905520219",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1490480486731088113"
+    },
+    {
+      "name": "ModPanel",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "target": "1487117794033008781",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "UseApplicationCommands"
+          ]
+        },
+        {
+          "target": "1487117789050310767",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117781899022446",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1530673049060511974"
+    },
+    {
+      "name": "Security",
+      "overwrites": [
+        {
+          "target": "@everyone",
+          "deny": [
+            "ViewChannel"
+          ]
+        },
+        {
+          "target": "1487117794033008781",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "UseApplicationCommands"
+          ]
+        },
+        {
+          "target": "1487117789050310767",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages"
+          ]
+        },
+        {
+          "target": "1487117781899022446",
+          "allow": [
+            "ViewChannel",
+            "SendMessages",
+            "ReadMessageHistory",
+            "ManageMessages",
+            "ManageChannels"
+          ]
+        }
+      ],
+      "syncChildren": true,
+      "id": "1530673054001135806"
+    }
+  ],
+  "channelRules": []
+}

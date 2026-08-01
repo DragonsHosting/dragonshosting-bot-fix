@@ -1,0 +1,8 @@
+public/assets/** linguist-vendored
+transcripts/** linguist-vendored
+*.png linguist-vendored
+*.jpg linguist-vendored
+*.jpeg linguist-vendored
+*.gif linguist-vendored
+*.jar linguist-vendored
+*.zip linguist-vendored
