@@ -1,7 +1,7 @@
 {
     "name": "dragonshosting",
     "version": "1.9.6",
-    "description": "DragonHosting Discord Bot",
+    "description": "DragonsHosting Discord Bot",
     "main": "index.js",
     "engines": {
         "node": ">=18.20.0"
@@ -12,7 +12,7 @@
         "dev": "concurrently \"node index.js\" \"cd dashboard && vite\""
     },
     "author": "YouSeeMeRunning & Bagoot",
-    "license": "ISC",
+    "license": "MIT",
     "overrides": {
         "@mithron/deezer-music-metadata": {
             "axios": "^1.12.2"
