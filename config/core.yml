@@ -1,0 +1,49 @@
+# Dragons BOT CORE CONFIGURATION
+#
+# Need Support?
+#   • Join our Discord: https://discord.gg/5FJnkz6WxP
+#   • Ask in #Community-Support or open a ticket
+#
+
+# ===========================================================================
+# ESSENTIAL BOT SETTINGS
+# ===========================================================================
+Version: "1.9.4" # Don't change this!
+BotToken: ""
+mongoURI: ""
+GuildID: "0"
+BotName: "Dragons Algemeen"
+Statistics: true  # Set to false to disable statistics in startup
+Timezone: "Europe/Amsterdam" # Use https://gist.github.com/diogocapela/12c6617fc87607d11fd62d2a4f42b02a 
+
+# ===========================================================================
+# VISUAL STYLING
+# ===========================================================================
+EmbedColors: "#1769FF"
+SuccessEmbedColor: "#2ecc71"
+ErrorEmbedColor: "#E74C3C"
+
+# ===========================================================================
+# DATA PURGE SETTINGS
+# ===========================================================================
+DataPurge:
+  Enabled: true
+  
+  UserMessages:
+    Enabled: true
+    RetentionDays: 90
+    
+  TransactionLogs:
+    Enabled: true
+    RetentionDays: 10
+    
+  Tickets:
+    Enabled: true
+    RetentionDays: 120
+
+# ===========================================================================
+# AUTO-UPDATE SETTINGS
+# ===========================================================================
+# When enabled, the bot will automatically check for and install updates.
+# Your config files and addons are preserved during updates.
+AutoUpdate: false

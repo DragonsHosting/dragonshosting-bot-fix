@@ -1,0 +1,33 @@
+# ===========================================================================
+# BACKUP SYSTEM CONFIGURATION
+# ===========================================================================
+
+Backup:
+  Enabled: true
+  Schedule: "1h" # Time between automatic backups (1d = 1 day, 1h = 1 hour, 1m = 1 minute)
+  MaxBackups: 24 # Keep the latest 24 automatic snapshots; manual backups are not rotated out
+  LogsChannelID: ["0"] # Supports multiple channel IDs for different guilds
+
+  Content:
+    Channels: true
+    Roles: true
+    RolePermissions: true
+    Members: true
+    MemberRoles: true
+    MemberNicknames: true
+    Bans: true
+    Emojis: true
+    ServerSettings: true
+
+  Messages:
+    Enabled: true
+    MaxPerChannel: 100 # A bounded history keeps scheduled snapshots small and reliable
+    SaveImages: false # Message attachments are not copied into each snapshot
+
+  Include:
+    Channels: []
+    Categories: []
+
+  Exclude:
+    Channels: []
+    Categories: []

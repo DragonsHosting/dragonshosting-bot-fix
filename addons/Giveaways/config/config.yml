@@ -1,0 +1,76 @@
+# ===========================================================================
+# GIVEAWAYS SYSTEM CONFIGURATION
+# ===========================================================================
+# Placeholders: {prize}, {hostedBy}, {endsIn}, {entries}, {winners}, {giveawayId},
+# {whitelistRoles}, {blacklistRoles}, {minServerJoinDate}, {minAccountAge},
+# {minInvites}, {minMessages}, {winnerCount}, {serverName}
+
+Giveaways:
+  AllowRoles: ["ROLE_ID","ROLE_ID"]
+  GiveawayStatusCheck: 7500
+  DirectMessageWinners: true
+
+  Buttons:
+    Enter:
+      Style: "Primary"
+      Emoji: "🎉"
+      Label: "Enter"
+      ShowEntries: true
+    Odds:
+      Style: "Secondary"
+      Emoji: "📈"
+      Label: "Odds"
+    Entrants:
+      Style: "Secondary"
+      Emoji: "👥"
+      Label: "Entries"
+
+  ActiveGiveaway:
+    Thumbnail: "https://i.imgur.com/ewT6bOT.png"
+    Image: "https://i.imgur.com/yw6UcuW.jpg"
+    Components:
+      - Type: "container"
+        AccentColor: "#1769FF"
+        Components:
+          - Type: "section"
+            Text:
+              Content: "# {prize}  [amount: {winnerCount}]\n\n> **Hosted by:** {hostedBy}\n> **Ends:** {endsIn}\n> **Entries:** {entries}"
+            Accessory:
+              Type: "thumbnail"
+              Media:
+                URL: "{thumbnail}"
+          
+          - Type: "media_gallery"
+            Items:
+              - URL: "{image}"
+          
+          - Type: "text_display"
+            Content: "-# ID: {giveawayId}"
+
+  EndedGiveaway:
+    Thumbnail: "https://i.imgur.com/ewT6bOT.png"
+    Image: "https://i.imgur.com/7TQDDAy.png"
+    Components:
+      - Type: "container"
+        AccentColor: "#1769FF"
+        Components:
+          - Type: "section"
+            Text:
+              Content: "# {prize}\n\n**Winner**\n{winners}"
+            Accessory:
+              Type: "thumbnail"
+              Media:
+                URL: "{thumbnail}"
+          
+          - Type: "media_gallery"
+            Items:
+              - URL: "{image}"
+          
+          - Type: "text_display"
+            Content: "-# ID: {entries} entries  ·  {giveawayId}"
+
+  EntrantsEmbed:
+    Title: "Giveaway Entrants - {prize}"
+    Description: "{entrantsList}"
+    Footer: "Total Entrants: {totalEntrants} • Page {currentPage}/{totalPages}"
+    Color: "#1769FF"

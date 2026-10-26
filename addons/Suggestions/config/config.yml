@@ -1,0 +1,74 @@
+# ===========================================================================
+# SUGGESTION SYSTEM CONFIGURATION
+# ===========================================================================
+
+SuggestionSettings:
+  Enabled: false
+  ChannelID: ["CHANNEL_ID"] # The channel where all the suggestions will be posted
+  ChannelSuggestionID: [""] # The channel where users can type suggestions (leave empty to use ChannelID)
+  AllowedRoles: ["ROLE_ID", "ROLE_ID"] # Roles allowed to use the suggestion command
+  SuggestionAcceptDenyRoles: ["ROLE_ID", "ROLE_ID"] # Roles that can accept and deny suggestions /suggestion accept/deny <id>
+  threadName: "{user}-suggestion" # Placeholders: {user}, Leave blank to disable
+  UseQuestionModal: true # Set to true to enable the question modal for suggestions
+  blockBlacklistWords: true # Should suggestions be filtered by the Blacklist Word System?
+  sendDM: true
+  AllowChannelSuggestions: false # Enable/disable creating suggestions by typing in channel
+  DeleteOriginalMessage: false # Whether to delete the original message when creating suggestion
+  DeleteFailureMessages: true # Whether to delete error messages after 5 seconds
+  FailureMessageTimeout: 5000 # How long to wait before deleting error messages (in milliseconds)
+
+  AdditionalModalInputs: {}
+SuggestionUpvote:
+  ButtonName: "{upvotecount} ({upvotePercent}%)"
+  ButtonEmoji: "👍"
+  ButtonColor: Success # Primary, Secondary, Success, Danger
+  upvoteEmoji: "👍"
+
+SuggestionDownvote:
+  ButtonName: "{downvotecount} ({downvotePercent}%)"
+  ButtonEmoji: "👎"
+  ButtonColor: Danger # Primary, Secondary, Success, Danger
+  downvoteEmoji: "👎"
+
+# Placeholders: {user}, {upvotecount}, {upvoteemoji}, {downvoteemoji}, {downvotecount}, {Suggestion}, {SuggestionID}, {ShortTime} ShortTime is HH:MM:SS. {LongTime} LongTime is May 5th 2024
+SuggestionEmbed:
+  Components:
+    - Type: container
+      AccentColor: '#1769FF'
+      Spoiler: false
+      Components:
+        - Type: section
+          Text:
+            Content: '**{user}''s Suggestion**\n\n**Suggestion**\n```{suggestion}```\n\n-# Suggestion ID: {SuggestionID} | {LongTime}'
+          Accessory:
+            Type: thumbnail
+            Media:
+              Url: '{userIcon}'
+SuggestionAcceptEmbed: 
+  AcceptChannelID: [""] # Define where the embed is posted once accepted. Leave blank for none
+  Components:
+    - Type: container
+      AccentColor: '#4BB543'
+      Spoiler: false
+      Components:
+        - Type: section
+          Text:
+            Content: '**Accepted {user}''s Suggestion**\n\n**Suggestion**\n```{suggestion}```\n**Reason**\n```{reason}```\n\n-# Suggestion ID: {SuggestionID} | {LongTime}'
+          Accessory:
+            Type: thumbnail
+            Media:
+              Url: '{userIcon}'
+SuggestionDenyEmbed: 
+  DenyChannelID: [""] # Define where the embed is posted once denied. Leave blank for none
+  Components:
+    - Type: container
+      AccentColor: '#a82e2e'
+      Spoiler: false
+      Components:
+        - Type: section
+          Text:
+            Content: '**Denied {user}''s Suggestion**\n\n**Suggestion**\n```{suggestion}```\n**Reason**\n```{reason}```\n\n-# Suggestion ID: {SuggestionID} | {LongTime}'
+          Accessory:
+            Type: thumbnail
+            Media:
+              Url: '{userIcon}'

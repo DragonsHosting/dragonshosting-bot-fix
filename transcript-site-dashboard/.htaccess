@@ -1,0 +1,16 @@
+Options -Indexes
+DirectoryIndex index.php
+RewriteEngine On
+
+# Prevent direct public reads of the source archive and stored transcript pages.
+RewriteCond %{THE_REQUEST} \s/+transcripts\.json(?:[?\s]) [NC,OR]
+RewriteCond %{THE_REQUEST} \s/+t/ [NC]
+RewriteRule ^ - [F,L]
+
+<FilesMatch "^(?:config\.php|config\.php\.example|transcripts\.json)$">
+    Require all denied
+</FilesMatch>
+
+# Route every page through the authenticated PHP controller.
+RewriteRule ^index\.php$ - [L]
+RewriteRule ^ index.php [QSA,L]

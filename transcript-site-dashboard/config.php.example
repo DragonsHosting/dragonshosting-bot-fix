@@ -1,0 +1,13 @@
+<?php
+// Copy this file to a location outside public_html and keep it private.
+return [
+    'discord_client_id' => getenv('DISCORD_CLIENT_ID') ?: '',
+    'discord_client_secret' => getenv('DISCORD_CLIENT_SECRET') ?: '',
+    'discord_redirect_uri' => getenv('DISCORD_REDIRECT_URI') ?: '',
+    'discord_guild_id' => getenv('TRANSCRIPT_DISCORD_GUILD_ID') ?: '',
+    'discord_staff_role_ids' => array_values(array_filter(array_map(
+        'trim',
+        explode(',', getenv('TRANSCRIPT_DISCORD_STAFF_ROLE_IDS') ?: '')
+    ))),
+    'data_directory' => rtrim((string) ($_SERVER['DOCUMENT_ROOT'] ?? ''), '/\\'),
+];

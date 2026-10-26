@@ -1,0 +1,256 @@
+# ===========================================================================
+# LOGGING SYSTEM CONFIGURATION
+# ===========================================================================
+
+# ===========================================================================
+# USER LOGS
+# ===========================================================================
+UserUpdateLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+RoleAddLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+RoleRemoveLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+# ===========================================================================
+# GUILD LOGS
+# ===========================================================================
+GuildUpdateLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+ChannelCreatedLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+ChannelDeletedLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+# ===========================================================================
+# MESSAGE LOGS
+# ===========================================================================
+MessageDeleteLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+  LogImages: true
+
+MessageUpdateLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+# ===========================================================================
+# VOICE LOGS
+# ===========================================================================
+VoiceChannelStreamStart:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+VoiceChannelStreamStop:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+VoiceChannelJoin:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+VoiceChannelLeave:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+VoiceChannelSwitch:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+# ===========================================================================
+# MODERATION LOGS
+# ===========================================================================
+TimeoutLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+UntimeLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+WarnLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+BanLogs:
+  Enabled: true
+  DM:
+    Enabled: false
+    Embed:
+      Title: "🚫 Ban Notification"
+      Description:
+        - "**🏰 Guild:** {guildName}"
+        - "**🔨 Banned By:** {moderator}"
+        - "**📝 Reason:** {reason}"
+        - "**📅 Date:** {longtime}, {shorttime}"
+        - " "
+        - "🚷 You have been banned from the server."
+      Footer: "🔒 Moderation Action | DragonHosting"
+      Color: "#1769FF"
+  LogsChannelID: ["0"]
+  Embed:
+    Title: "🔨 Ban Action | User: {userTag}"
+    Description:
+      - "**👤 User:** {user}"
+      - "**🛠️ Moderator:** {moderator}"
+      - "**📝 Reason:** {reason}"
+      - "**📅 Date:** {longtime}, {shorttime}"
+      - " "
+      - "This ban has been completed."
+    Footer: "🔒 Moderation Action | DragonHosting"
+    Color: "#1769FF"
+  Thumbnail: true
+
+UnbanLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+  Embed:
+    Title: "🔓 Unban Action | User: {userTag}"
+    Description:
+      - "**👤 User:** {user}"
+      - "**🛠️ Moderator:** {moderator}"
+      - "**📝 Reason for Unban:** {reason}"
+      - "**📅 Date:** {longtime}, {shorttime}"
+      - " "
+      - "The user's ban has been lifted, restoring their access to the server."
+    Footer: "🔒 Moderation Action | DragonHosting"
+    Color: "#1769FF"
+  Thumbnail: true
+
+KickLogs:
+  Enabled: true
+  DM:
+    Enabled: true
+    Embed:
+      Title: ":boot: Kick Notification"
+      Description:
+        - "**👤 User:** {user}"
+        - "**🛠️ Kicked By:** {moderator}"
+        - "**📝 Reason:** {reason}"
+        - "**📅 Date:** {longTime}, {shortTime}"
+      Footer: "🔒 Moderation Action | DragonHosting"
+      Color: "#1769FF"
+  LogsChannelID: ["0"]
+  Embed:
+    Title: ":warning: User Kicked | Case #{caseNumber}" #{caseNumber}"
+    Description:
+      - "**👤 User:** {user} (ID: {userId})"
+      - "**🔧 Moderator:** {moderator}"
+      - "**📝 Reason:** {reason}"
+      - "**📅 Date:** {longTime}, {shortTime}"
+    Footer: "🔒 Moderation Action | DragonHosting"
+    Color: "#1769FF"
+    Thumbnail: true
+
+# ===========================================================================
+# MISCELLANEOUS LOGS
+# ===========================================================================
+InviteCreateLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+InviteDeleteLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+  
+InviteJoinLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+GiveawayLogs:
+  Enabled: true
+  LogsChannelID: ["0"]
+
+  GiveawayStarted:
+    Embed:
+      Title: ":tada: Giveaway Started :tada:"
+      Description:
+        - "**🎁 Prize:** `{prize}` x{winnerCount}"
+        - "**👤 Hosted by:** {hostedBy}"
+        - "**📢 Channel:** {channel}"
+        - "**🏆 Winner Count:** `{winnerCount}`"
+        - "**⏰  Ends in:** {endsIn}"
+      Footer: "🔒 Giveaway Log | DragonHosting"
+      Color: "#1769FF"
+      ThumbnailUrl: "https://i.imgur.com/ewT6bOT.png"
+      Thumbnail: true
+
+  GiveawayEnded:
+    Embed:
+      Title: ":tada: Giveaway Ended :tada:"
+      Description:
+        - "**🎁 Prize:** `{prize}` x{winnerCount}"
+        - "**👤 Hosted by:** {hostedBy}"
+        - "**📢 Channel:** {channel}"
+        - "**🏆 Winner Count:** `{winnerCount}`"
+        - "**🏆 Winners:** {winners}"
+      Footer: "🔒 Giveaway Log | DragonHosting"
+      Color: "#1769FF"
+      ThumbnailUrl: "https://i.imgur.com/ewT6bOT.png"
+      Thumbnail: true
+
+  GiveawayRerolled:
+    Embed:
+      Title: ":tada: Giveaway Rerolled :tada:"
+      Description:
+        - "**🎁 Prize:** `{prize}` x{winnerCount}"
+        - "**👤 Hosted by:** {hostedBy}"
+        - "**📢 Channel:** {channel}"
+        - "**🏆 Winner Count:** `{winnerCount}`"
+        - "**🏆 New Winners:** {winners}"
+      Footer: "🔒 Giveaway Log | DragonHosting"
+      Color: "#1769FF"
+      ThumbnailUrl: "https://i.imgur.com/ewT6bOT.png"
+      Thumbnail: true
+
+# ===========================================================================
+# PURGE LOG CHANNEL
+# ===========================================================================
+PurgeLogChannel: ["0"]
+
+# Supplemental audit events sent to their matching server log channels.
+AuditLogs:
+  Enabled: true
+  MemberJoin:
+    Enabled: true
+    LogsChannelID: ["0"]
+  MemberLeave:
+    Enabled: true
+    LogsChannelID: ["0"]
+  MessageBulkDelete:
+    Enabled: true
+    LogsChannelID: ["0"]
+  ChannelChanges:
+    Enabled: true
+    LogsChannelID: ["0"]
+  RoleEntityChanges:
+    Enabled: true
+    LogsChannelID: ["0"]
+  AutoModeration:
+    Enabled: true
+    LogsChannelID: ["0"] # 〖📃〗automod-logs
+  GuildSettings:
+    Enabled: true
+    LogsChannelID: ["0"]
+  ServerAssets:
+    Enabled: true
+    LogsChannelID: ["0"]
+  ForumThreads:
+    Enabled: true
+    LogsChannelID: ["0"] # 〖📃〗forum
+  BotHealth:
+    Enabled: true
+    LogsChannelID: ["0"] # 〖📃〗bot-logs
+  Music:
+    Enabled: true
+    LogsChannelID: ["0"] # 〖📃〗music-logs

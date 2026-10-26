@@ -1,0 +1,26 @@
+InviteRoles:
+  Enabled: false
+  Stack: true
+  Tiers:
+    '1':
+      Roles:
+        - ROLE_ID
+        - ROLE_ID
+      Amount: 1
+    '2':
+      Roles:
+        - ROLE_ID
+        - ROLE_ID
+      Amount: 10
+InviteCreateLogs:
+  Enabled: true
+  LogsChannelID:
+    - '0'
+InviteDeleteLogs:
+  Enabled: true
+  LogsChannelID:
+    - '0'
+InviteJoinLogs:
+  Enabled: true
+  LogsChannelID:
+    - '0'

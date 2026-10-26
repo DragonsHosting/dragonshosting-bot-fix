@@ -1,0 +1,190 @@
+# ===========================================================================
+# WELCOME & LEAVE MESSAGES CONFIGURATION
+# ===========================================================================
+
+# Placeholders
+# {userName}: YouSeeMeRunning
+# {user}: @YouSeeMeRunning
+# {userTag}: YouSeeMeRunning#1234
+# {userId}: 0 - This is the ID
+# {userBanner}: Displays their users banner in the image field  
+# {UserCreation}: How old is their account? Discord timestamp 
+# {guildName}: Guild Name
+# {guildIcon}: Guild Icon
+# {memberCount}: Guild Member Count - 1st, 2nd, 3rd, 4th...
+# {memberCountNumeric}: Displays 5, 6, 7...
+# {longTime}: March 1st, 2023
+# {shortTime}: 17:00
+# {user-joinedAt}: For leave messages, displays when they first joined
+# {user-createdAt}: The date when the user's Discord account was created
+# {autoKickTime}: How long until the user is kicked
+# {invitedBy}: Who invited them?
+# {invitedByCount}: How many invites the person who invited them has
+# {joinDate} # Discord timestamp for when they joined
+# {joinTime} # Discord timestamp for when they joined
+# {leaveDate} # Discord timestamp for when they left
+# {leaveTime} # Discord timestamp for when they left
+WelcomeMessage:
+  Enabled: true
+  ChannelID: ["0"]
+  UseComponentsV2: false # Set to true to use Discord's new Components V2 format instead of embeds
+  Type: "BOTH" # EMBED, MESSAGE, BOTH (If both are used the message will appear above the embed)
+  Text: "Welcome to **{guildName}**, {userName}"
+  Embed:
+    Title: ""
+    Description:
+      - "Welcome to **{guildName}**, {userName}! We're delighted to have you join our community. 🎉"
+      - "" 
+      - "Invited By » {invitedBy} ({invitedByCount} invites)" 
+      - "Join Date » {joinDate} ({joinTime})" 
+      - "Account Age » {UserCreation}" 
+      - "Members » {memberCount} member" 
+    Footer:
+      Text: "{guildName} • Today at {shortTime}"
+      Icon: "{guildIcon}"
+    Author:
+      Text: "Welcome to {guildName}!"
+      Icon: "https://static-00.iconduck.com/assets.00/hand-waving-icon-1875x2048-trzytj43.png"
+    Color: "#1769FF"
+    Image: "{userBanner}" # {userBanner} - Displays the users banner
+    Thumbnail: "{user-avatar}" # {user-avatar} - Displays the users avatar
+
+  # ---------------------------------------------------------------------------
+  # COMPONENTS V2 FORMAT (when UseComponentsV2 is true)
+  # ---------------------------------------------------------------------------
+  ComponentsV2:
+    Components:
+      - Type: "container"
+        AccentColor: "#5865F2"
+        Spoiler: false
+        Components:
+          - Type: "section"
+            Text:
+              Content: "# Welcome, {userName}\n\nYou've joined **{guildName}** ÔÇö we're glad to have you."
+            Accessory:
+              Type: "thumbnail"
+              Media:
+                Url: "{userAvatar}"
+          
+          - Type: "separator"
+            Divider: true
+            Spacing: "small"
+          
+          - Type: "text_display"
+            Content: "**Invited by** {invitedBy} ┬À {invitedByCount} invites\n**Joined** {joinDate}\n**Account created** {UserCreation}\n**Member** #{memberCountNumeric}"
+          
+          - Type: "separator"
+            Divider: false
+            Spacing: "small"
+          
+          - Type: "section"
+            Text:
+              Content: "-# Take a moment to read our rules and introduce yourself."
+            Accessory:
+              Type: "button"
+              Style: "Secondary"
+              Label: "Get Started"
+              Url: "https://discord.com"
+
+  AutoDelete: # Auto delete the message after a certain time
+    Enabled: false
+    Delay: "15s"
+  
+  
+  DM:
+    Enabled: false
+    UseComponentsV2: false # Set to true to use Discord's new Components V2 format for DMs
+    Embed:
+      Title: "Welcomne, {userName}!"
+      Description:
+        - "Welcome to **{guildName}**, {userName}! We're delighted to have you join our community. 🎉"
+        - "You are our {memberCount} member!" 
+      Footer:
+        Text: "{guildName} • Today at {shortTime}"
+        Icon: "{guildIcon}"
+      Author:
+        Text: "Welcome to {guildName}!"
+        Icon: "https://static-00.iconduck.com/assets.00/hand-waving-icon-1875x2048-trzytj43.png"
+      Color: "#1769FF"
+      Image: "{userBanner}" # {userBanner} - Displays the users banner
+      Thumbnail: "{user-avatar}" # {user-avatar} - Displays the users avatar
+     
+
+    # ---------------------------------------------------------------------------
+    # COMPONENTS V2 FORMAT (when UseComponentsV2 is true)
+    # ---------------------------------------------------------------------------
+    ComponentsV2:
+      Components:
+        - Type: "container"
+          AccentColor: "#5865F2"
+          Spoiler: false
+          Components:
+            - Type: "section"
+              Text:
+                Content: "# Welcome to {guildName}\n\nHey {userName}, thanks for joining. You're member **#{memberCountNumeric}**."
+              Accessory:
+                Type: "thumbnail"
+                Media:
+                  Url: "{guildIcon}"
+            
+            - Type: "separator"
+              Divider: true
+              Spacing: "small"
+            
+            - Type: "text_display"
+              Content: "Head over to the server to get started. We recommend reading our rules and introducing yourself to the community."
+            
+            - Type: "separator"
+              Divider: false
+              Spacing: "small"
+            
+            - Type: "section"
+              Text:
+                Content: "-# Questions? Open a ticket or ask in our support channel."
+              Accessory:
+                Type: "button"
+                Style: "Primary"
+                Label: "Open Server"
+                Url: "https://discord.com"
+
+LeaveMessage:
+  Enabled: true
+  ChannelID: ["0"]
+  UseComponentsV2: false # Set to true to use Discord's new Components V2 format instead of embeds
+  Type: "BOTH" # EMBED, MESSAGE, BOTH (If both are used the message will appear above the embed)
+  Text: "Goodbye, {userName}!"
+  Embed:
+    Title: ""
+    Description:
+      - "Goodbye, {userName}!"
+      - "Hope to see you again soon...."
+    Footer:
+      Text: "{guildName} • {shortTime}"
+      Icon: "{guildIcon}"
+    Author:
+      Text: "👋 See you soon!"
+      Icon: ""
+    Color: "#1769FF"
+    Image: "" # {userBanner} - Displays the users banner
+    Thumbnail: "{user-avatar}" # {user-avatar} - Displays the users avatar
+
+  # ---------------------------------------------------------------------------
+  # COMPONENTS V2 FORMAT (when UseComponentsV2 is true)
+  # ---------------------------------------------------------------------------
+  ComponentsV2:
+    Components:
+      - Type: "container"
+        AccentColor: "#ED4245"
+        Spoiler: false
+        Components:
+          - Type: "section"
+            Text:
+              Content: "# {userName} left\n\n**{memberCountNumeric}** members remain."
+            Accessory:
+              Type: "thumbnail"
+              Media:
+                Url: "{userAvatar}"
+
+  AutoDelete: # Auto delete the message after a certain time
+    Enabled: false
+    Delay: "15s" # e.g., "10s", "1m", "1h", "1d"

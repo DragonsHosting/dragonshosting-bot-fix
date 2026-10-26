@@ -1,0 +1,1 @@
+# Invites addon dashboard`r`n`r`nThis addon currently registers no dashboard pages or API routes.

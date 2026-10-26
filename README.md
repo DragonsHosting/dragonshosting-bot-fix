@@ -1,41 +1,18 @@
-# DragonsHosting Bot
+# Dragonshosting Discord bot template
 
-![Status](https://img.shields.io/badge/status-active-32cd32?style=for-the-badge)
-![Runtime](https://img.shields.io/badge/runtime-node.js-339933?style=for-the-badge)
-![Discord](https://img.shields.io/badge/platform-discord-5865f2?style=for-the-badge)
-![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)
+This template is based on the bot source currently running on the Dragonshosting hosting panel (version 1.9.6, Node.js 22). Runtime files, server IDs, transcript contents, credentials, and deployment data have been removed or blanked.
 
-DragonsHosting Bot is a Discord management bot for hosting communities. It includes ticket flows, moderation tools, transcript handling, channel statistics, anti-alt checks, verification, and support panel utilities.
+## Install
 
-## Features
+1. Use Node.js 22 and run `npm ci` in the repository root.
+2. Copy `.env.example` to `.env` for local setup, or set those values in the hosting panel. Never commit `.env`.
+3. Set `BOT_TOKEN`, `SESSION_SECRET`, and `MONGODB_URI`. Add the OAuth application values `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET`, `DISCORD_REDIRECT_URI`, and `APP_URL`.
+4. In the Discord Developer Portal, register the exact value of `DISCORD_REDIRECT_URI` under the application's OAuth2 redirect URLs. For the default dashboard API route, it ends with `/api/auth/callback`.
+5. Set `DASHBOARD_LOGIN_ROLES` to comma-separated staff role IDs, or set the role IDs under `Dashboard.Permissions.Dashboard.Login` in `config/modules/dashboard.yml`. The dashboard denies login while no valid role IDs are configured.
+6. Run `npm start`. Run `npm run build` when rebuilding the dashboard UI.
 
-- Ticket panels and transcript storage
-- Moderation commands and support workflows
-- Security checks for scam links, token leaks, spam, and dangerous attachments
-- Voice TTS worker support
-- Channel statistics automation
-- Verification and anti-alt modules
+The dashboard login uses Discord OAuth2 authorization code flow, validates a one-time session-bound `state`, and checks that the Discord user has an allowed role. The OAuth client secret stays on the server. Only the `identify` scope is requested.
 
-## Tech stack
+`config/dragonshosting-transcript-upload.json` is a disabled, empty example. Do not add live DirectAdmin credentials, bot tokens, OAuth secrets, database URLs, webhooks, or real server configuration to this public template.
 
-- JavaScript / Node.js
-- Discord.js
-- HTML, CSS, and browser-side JavaScript for public transcript pages
-- Optional MongoDB-backed transcript storage
-
-## Configuration
-
-Copy `.env.example` to `.env` and configure the required values:
-
-```env
-BOT_TOKEN=
-CLIENT_ID=
-GUILD_ID=
-TRANSCRIPT_SECRET=
-```
-
-Never commit `.env` or production tokens.
-
-## GitHub language bar
-
-This repository contains source files and `.gitattributes` rules so GitHub Linguist can detect the code languages cleanly while ignoring generated images, archives, and runtime transcript output.
+The `transcript-site-dashboard/` folder contains the Discord-authenticated PHP version of the separate transcript website. Its private OAuth config belongs outside `public_html`; see that folder's README before deploying it.

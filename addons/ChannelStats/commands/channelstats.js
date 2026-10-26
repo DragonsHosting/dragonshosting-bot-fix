@@ -1,206 +1,257 @@
-const { ChannelType, SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
-const store = require('../channelStatsStore');
-const {
-  DEFAULT_CONFIG,
-  disableGuildStats,
-  setupGuildStats,
-  updateGuildStats
-} = require('../channelStatsService');
+const { SlashCommandBuilder, ChannelType, PermissionsBitField, MessageFlags } = require('discord.js');
+const ChannelStat = require('../models/ChannelStat');
+const UserData = require('../../../models/UserData');
+const formatCurrentDate = require('../date');
 
-function getTemplate(interaction, optionName, fallback) {
-  return interaction.options.getString(optionName) || fallback;
-}
-
-function validateTemplates(templates) {
-  for (const [name, template] of Object.entries(templates)) {
-    if (name === 'date' && !template.includes('{date}')) {
-      return `${name}_name must contain {date}.`;
-    }
-
-    if (name !== 'date' && !template.includes('{count}')) {
-      return `${name}_name must contain {count}.`;
-    }
-  }
-
-  return null;
-}
-
-function formatStatus(config) {
-  const counts = config.lastCounts || {};
-  const statKeys = config.statKeys || Object.keys(config.channelIds || {});
-  const lines = [
-    `Enabled: ${config.enabled ? 'yes' : 'no'}`,
-    `Category: ${config.categoryId ? `<#${config.categoryId}>` : 'not set'}`,
-    `Members role: ${config.memberRoleId ? `<@&${config.memberRoleId}>` : 'not set'}`,
-    `Staff role: ${config.staffRoleId ? `<@&${config.staffRoleId}>` : 'not set'}`,
-    ...statKeys.map(key => `${key} channel: ${config.channelIds?.[key] ? `<#${config.channelIds[key]}>` : 'not set'}`),
-    `Last counts: members ${counts.members ?? 0}, bots ${counts.bots ?? 0}, staff ${counts.staff ?? 0}, bans ${counts.bans ?? 0}, date ${counts.date || 'unknown'}`,
-    `Last refresh: ${config.lastRefreshAt || 'never'}`
-  ];
-
-  return lines.join('\n');
-}
 
 module.exports = {
-  data: new SlashCommandBuilder()
-    .setName('channelstats')
-    .setDescription('Set up and manage server channel stats.')
-    .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
-    .addSubcommand(subcommand =>
-      subcommand
-        .setName('setup')
-        .setDescription('Create/update member, staff, ban, and date stat channels.')
-        .addRoleOption(option =>
-          option
-            .setName('staff_role')
-            .setDescription('Role used to count staff members. Defaults to General Staff.')
-            .setRequired(false)
-        )
-        .addRoleOption(option =>
-          option
-            .setName('members_role')
-            .setDescription('Role used to count members. Defaults to members.')
-            .setRequired(false)
-        )
-        .addStringOption(option =>
-          option
-            .setName('category_name')
-            .setDescription('Category name for the stat channels.')
-            .setRequired(false)
-        )
-        .addChannelOption(option =>
-          option
-            .setName('category')
-            .setDescription('Category where stat channels should be created.')
-            .addChannelTypes(ChannelType.GuildCategory)
-            .setRequired(false)
-        )
-        .addStringOption(option =>
-          option
-            .setName('members_name')
-            .setDescription('Name template, for example Members: {count}.')
-            .setRequired(false)
-        )
-        .addStringOption(option =>
-          option
-            .setName('staff_name')
-            .setDescription('Name template, for example Staff: {count}.')
-            .setRequired(false)
-        )
-        .addStringOption(option =>
-          option
-            .setName('bans_name')
-            .setDescription('Name template, for example Bans: {count}.')
-            .setRequired(false)
-        )
-        .addStringOption(option =>
-          option
-            .setName('date_name')
-            .setDescription('Name template, for example Date: {date}.')
-            .setRequired(false)
-        )
-    )
-    .addSubcommand(subcommand =>
-      subcommand
-        .setName('refresh')
-        .setDescription('Refresh all channel stat names now.')
-    )
-    .addSubcommand(subcommand =>
-      subcommand
-        .setName('status')
-        .setDescription('Show the current channel stats setup.')
-    )
-    .addSubcommand(subcommand =>
-      subcommand
-        .setName('disable')
-        .setDescription('Disable channel stats for this server.')
-        .addBooleanOption(option =>
-          option
-            .setName('delete_channels')
-            .setDescription('Also delete the stat channels created by this addon.')
-            .setRequired(false)
-        )
-    ),
+    data: new SlashCommandBuilder()
+        .setName('channelstats')
+        .setDescription('Manage channel statistics')
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('add')
+                .setDescription('Add a channel stat')
+                .addStringOption(option =>
+                    option.setName('channelname')
+                        .setDescription('The name of the channel with {stats} placeholder')
+                        .setRequired(true))
+                .addStringOption(option =>
+                    option.setName('type')
+                        .setDescription('Type of the stat')
+                        .setRequired(true)
+                        .addChoices(
+                            { name: 'MemberCount', value: 'MemberCount' },
+                            { name: 'HumanMemberCount', value: 'HumanMemberCount' },
+                            { name: 'BotCount', value: 'BotCount' },
+                            { name: 'CurrentDate', value: 'CurrentDate' },
+                            { name: 'NitroBoosterCount', value: 'NitroBoosterCount' },
+                            { name: 'ServerCreationDate', value: 'ServerCreationDate' },
+                            { name: 'TotalRolesCount', value: 'TotalRolesCount' },
+                            { name: 'TotalEmojisCount', value: 'TotalEmojisCount' },
+                            { name: 'TotalChannelsCount', value: 'TotalChannelsCount' },
+                            { name: 'OnlineMembersCount', value: 'OnlineMembersCount' },
+                            { name: 'ServerRegion', value: 'ServerRegion' },
+                            { name: 'TotalBannedMembers', value: 'TotalBannedMembers' },
+                            { name: 'TotalMembersWithRole', value: 'TotalMembersWithRole' },
+                            { name: 'OnlineMembersWithRole', value: 'OnlineMembersWithRole' },
+                            { name: 'TotalTickets', value: 'TotalTickets' },
+                            { name: 'OpenTickets', value: 'OpenTickets' },
+                            { name: 'ClosedTickets', value: 'ClosedTickets' },
+                            { name: 'DeletedTickets', value: 'DeletedTickets' },
+                            { name: 'TotalMessages', value: 'TotalMessages' },
+                            { name: 'BotUptime', value: 'BotUptime' },
+                            { name: 'TotalCases', value: 'TotalCases' },
+                            { name: 'TotalSuggestions', value: 'TotalSuggestions' }
+                        ))
+                .addChannelOption(option =>
+                    option.setName('channel')
+                        .setDescription('The voice channel to update')
+                        .setRequired(true)
+                        .addChannelTypes(ChannelType.GuildVoice))
+                .addRoleOption(option =>
+                    option.setName('role')
+                        .setDescription('The role to count (required for role-based stats)')
+                        .setRequired(false)))
+        .addSubcommand(subcommand =>
+            subcommand
+                .setName('remove')
+                .setDescription('Remove a channel stat')
+                .addChannelOption(option =>
+                    option.setName('channel')
+                        .setDescription('The voice channel stat to remove')
+                        .setRequired(true)
+                        .addChannelTypes(ChannelType.GuildVoice))),
+    category: 'Utility',
+    async execute(interaction) {
+        if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator)) {
+            return interaction.reply({ content: 'You do not have permission to use this command.', flags: MessageFlags.Ephemeral });
+        }
 
-  async execute(interaction) {
-    if (!interaction.inGuild()) {
-      return interaction.reply({ content: 'This command can only be used in a server.', ephemeral: true });
-    }
+        const subcommand = interaction.options.getSubcommand();
+        const channelName = interaction.options.getString('channelname');
+        const type = interaction.options.getString('type');
+        const channel = interaction.options.getChannel('channel');
+        const role = interaction.options.getRole('role');
+        const guildId = interaction.guild.id;
 
-    const subcommand = interaction.options.getSubcommand();
+        if (subcommand === 'add') {
+            if (!channelName.includes('{stats}')) {
+                return interaction.reply({ content: 'The channel name must include the {stats} placeholder.', flags: MessageFlags.Ephemeral });
+            }
 
-    if (subcommand === 'setup') {
-      const templates = {
-        members: getTemplate(interaction, 'members_name', DEFAULT_CONFIG.templates.members),
-        staff: getTemplate(interaction, 'staff_name', DEFAULT_CONFIG.templates.staff),
-        bans: getTemplate(interaction, 'bans_name', DEFAULT_CONFIG.templates.bans),
-        date: getTemplate(interaction, 'date_name', DEFAULT_CONFIG.templates.date)
-      };
-      const templateError = validateTemplates(templates);
-      if (templateError) {
-        return interaction.reply({ content: templateError, ephemeral: true });
-      }
+            if ((type === 'TotalMembersWithRole' || type === 'OnlineMembersWithRole') && !role) {
+                return interaction.reply({ content: 'You must specify a role for this stat type.', flags: MessageFlags.Ephemeral });
+            }
 
-      await interaction.deferReply({ ephemeral: true });
-      const staffRole = interaction.options.getRole('staff_role');
-      const membersRole = interaction.options.getRole('members_role');
-      const category = interaction.options.getChannel('category');
-      const config = await setupGuildStats(interaction.guild, {
-        memberRoleId: membersRole?.id,
-        staffRoleId: staffRole?.id,
-        categoryId: category?.id,
-        categoryName: interaction.options.getString('category_name') || undefined,
-        templates
-      });
+            try {
+                const existingStat = await ChannelStat.findOne({ guildId: guildId, channelId: channel.id });
+                if (existingStat) {
+                    return interaction.reply({ content: `This channel already has a stat set.`, flags: MessageFlags.Ephemeral });
+                }
 
-      return interaction.editReply({
-        content: [
-          'Channel stats are set up.',
-          `Category: <#${config.categoryId}>`,
-          `Members role: ${config.memberRoleId ? `<@&${config.memberRoleId}>` : 'all non-bot members'}`,
-          `Staff role: ${config.staffRoleId ? `<@&${config.staffRoleId}>` : 'not set'}`,
-          ...(config.statKeys || Object.keys(config.channelIds || {})).map(key => `${key}: <#${config.channelIds[key]}>`),
-          'They refresh automatically about every 15 minutes and after member/ban/staff-role changes.'
-        ].join('\n')
-      });
-    }
+                let value;
+                const guild = interaction.guild;
 
-    if (subcommand === 'refresh') {
-      await interaction.deferReply({ ephemeral: true });
-      const result = await updateGuildStats(interaction.guild, { force: true });
-      if (result.skipped && result.reason === 'not_configured') {
-        return interaction.editReply({ content: 'Channel stats are not set up yet. Use /channelstats setup first.' });
-      }
+                switch (type) {
+                    case 'MemberCount':
+                        value = guild.memberCount.toString();
+                        break;
+                    case 'HumanMemberCount': {
+                        try {
+                            const members = await guild.members.fetch();
+                            value = members.filter(m => !m.user.bot).size.toString();
+                        } catch {
+                            const botCount = guild.members.cache.filter(m => m.user.bot).size;
+                            value = Math.max(guild.memberCount - botCount, 0).toString();
+                        }
+                        break;
+                    }
+                    case 'BotCount': {
+                        try {
+                            const members = await guild.members.fetch();
+                            value = members.filter(m => m.user.bot).size.toString();
+                        } catch {
+                            value = guild.members.cache.filter(m => m.user.bot).size.toString();
+                        }
+                        break;
+                    }
+                    case 'CurrentDate':
+                        value = formatCurrentDate(global.config?.Timezone);
+                        break;
+                    case 'NitroBoosterCount':
+                        value = guild.premiumSubscriptionCount.toString();
+                        break;
+                    case 'ServerCreationDate':
+                        value = guild.createdAt.toDateString();
+                        break;
+                    case 'TotalRolesCount':
+                        value = guild.roles.cache.size.toString();
+                        break;
+                    case 'TotalEmojisCount':
+                        value = guild.emojis.cache.size.toString();
+                        break;
+                    case 'TotalChannelsCount':
+                        value = guild.channels.cache.size.toString();
+                        break;
+                    case 'OnlineMembersCount':
+                        value = guild.members.cache.filter(m =>
+                            ['online', 'dnd', 'idle'].includes(m.presence?.status) && !m.user.bot
+                        ).size.toString();
+                        break;
+                    case 'ServerRegion':
+                        value = guild.preferredLocale || 'en-US';
+                        break;
+                    case 'TotalMembersWithRole':
+                        if (role) {
+                            value = role.members.size.toString();
+                        } else {
+                            value = '0';
+                        }
+                        break;
+                    case 'OnlineMembersWithRole':
+                        if (role) {
+                            value = role.members.filter(m =>
+                                ['online', 'dnd', 'idle'].includes(m.presence?.status) && !m.user.bot
+                            ).size.toString();
+                        } else {
+                            value = '0';
+                        }
+                        break;
+                    case 'TotalTickets':
+                        value = (await global.addonLoader?.getModel("Ticket")?.countDocuments({ guildId }) || 0).toString();
+                        break;
+                    case 'OpenTickets':
+                        value = (await global.addonLoader?.getModel("Ticket")?.countDocuments({ guildId, status: 'open' }) || 0).toString();
+                        break;
+                    case 'ClosedTickets':
+                        value = (await global.addonLoader?.getModel("Ticket")?.countDocuments({ guildId, status: 'closed' }) || 0).toString();
+                        break;
+                    case 'DeletedTickets':
+                        value = (await global.addonLoader?.getModel("Ticket")?.countDocuments({ guildId, status: 'deleted' }) || 0).toString();
+                        break;
+                    case 'TotalMessages':
+                        try {
+                            const totalMessages = await UserData.aggregate([
+                                { $match: { guildId } },
+                                { $group: { _id: null, total: { $sum: '$totalMessages' } } }
+                            ]);
+                            value = totalMessages.length > 0 ? totalMessages[0].total.toString() : '0';
+                        } catch { value = '0'; }
+                        break;
+                    case 'BotUptime': {
+                        const uptime = interaction.client.uptime;
+                        const days = Math.floor(uptime / 86400000);
+                        const hours = Math.floor((uptime % 86400000) / 3600000);
+                        const minutes = Math.floor((uptime % 3600000) / 60000);
+                        value = days > 0 ? `${days}d ${hours}h` : hours > 0 ? `${hours}h ${minutes}m` : `${minutes}m`;
+                        break;
+                    }
+                    case 'TotalCases':
+                        try {
+                            const totalCases = await UserData.aggregate([
+                                { $match: { guildId } },
+                                { $project: { caseCount: { $add: [
+                                    { $size: { $ifNull: ['$warnings', []] } },
+                                    { $size: { $ifNull: ['$kicks', []] } },
+                                    { $size: { $ifNull: ['$bans', []] } },
+                                    { $size: { $ifNull: ['$timeouts', []] } }
+                                ]}}},
+                                { $group: { _id: null, total: { $sum: '$caseCount' } } }
+                            ]);
+                            value = totalCases.length > 0 ? totalCases[0].total.toString() : '0';
+                        } catch { value = '0'; }
+                        break;
+                    case 'TotalSuggestions':
+                        try {
+                            value = (await global.addonLoader?.getModel('Suggestion')?.countDocuments({ guildId }) || 0).toString();
+                        } catch { value = '0'; }
+                        break;
+                    case 'TotalBannedMembers':
+                        try {
+                            const bans = await guild.bans.fetch();
+                            value = bans.size.toString();
+                        } catch { value = '0'; }
+                        break;
+                    default:
+                        value = '0';
+                }
 
-      return interaction.editReply({
-        content: `Channel stats refreshed. Members: ${result.counts.members}, bots: ${result.counts.bots}, staff: ${result.counts.staff}, bans: ${result.counts.bans}, date: ${result.counts.date}.`
-      });
-    }
+                let formattedValue = value;
+                if (!['ServerCreationDate', 'ServerRegion', 'BotUptime'].includes(type) && !isNaN(value)) {
+                    formattedValue = new Intl.NumberFormat('en-US').format(value);
+                }
 
-    if (subcommand === 'status') {
-      const config = store.getGuildConfig(interaction.guild.id);
-      if (!config) {
-        return interaction.reply({ content: 'Channel stats are not set up yet.', ephemeral: true });
-      }
+                const newChannelName = channelName.replace('{stats}', formattedValue).substring(0, 100);
+                await channel.setName(newChannelName).catch(console.error);
 
-      return interaction.reply({ content: formatStatus(config), ephemeral: true });
-    }
-
-    if (subcommand === 'disable') {
-      await interaction.deferReply({ ephemeral: true });
-      const result = await disableGuildStats(interaction.guild, {
-        deleteChannels: Boolean(interaction.options.getBoolean('delete_channels'))
-      });
-
-      if (!result.existed) {
-        return interaction.editReply({ content: 'Channel stats were not set up.' });
-      }
-
-      return interaction.editReply({
-        content: result.deletedChannels.length > 0
-          ? `Channel stats disabled and ${result.deletedChannels.length} stat channel(s) deleted.`
-          : 'Channel stats disabled. Existing channels were left in place.'
-      });
-    }
-  }
+                const newStat = new ChannelStat({
+                    guildId: guildId,
+                    type: type,
+                    channelId: channel.id,
+                    channelName: channelName,
+                    roleId: role ? role.id : null
+                });
+                await newStat.save();
+                global.addonLoader?.getService('channelStats.update')?.().catch(error => console.error('[ChannelStats] Refresh after add failed:', error.message));
+                await interaction.reply({ content: `Added stat for channel **${channel.name}** with type **${type}**${role ? ` and role **${role.name}**` : ''}.`, flags: MessageFlags.Ephemeral });
+            } catch (error) {
+                console.error(error);
+                await interaction.reply({ content: 'Failed to add the channel stat. Please try again later.', flags: MessageFlags.Ephemeral });
+            }
+        } else if (subcommand === 'remove') {
+            try {
+                const stat = await ChannelStat.findOneAndDelete({ guildId: guildId, channelId: channel.id });
+                if (stat) {
+                    global.addonLoader?.getService('channelStats.update')?.().catch(error => console.error('[ChannelStats] Refresh after remove failed:', error.message));
+                    await interaction.reply({ content: `Removed stat for channel **${channel.name}**.`, flags: MessageFlags.Ephemeral });
+                } else {
+                    await interaction.reply({ content: `Stat for channel **${channel.name}** not found.`, flags: MessageFlags.Ephemeral });
+                }
+            } catch (error) {
+                console.error(error);
+                await interaction.reply({ content: 'Failed to remove the channel stat. Please try again later.', flags: MessageFlags.Ephemeral });
+            }
+        }
+    },
 };

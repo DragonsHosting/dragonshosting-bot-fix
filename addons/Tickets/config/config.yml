@@ -1,0 +1,1404 @@
+# ===========================================================================
+# TICKET SYSTEM CONFIGURATION
+# ===========================================================================
+
+# ===========================================================================
+# GENERAL TICKET SETTINGS
+# ===========================================================================
+TicketSettings:
+  Enabled: false
+  LogsChannelID: ["0"]
+  MaxTickets: 1
+  DeletionTime: "3s"
+  useSelectMenu: false
+  overFlow: ["0", "0", "0", "0"]
+
+  DelayedResponse:
+    Enabled: false
+    TicketThreshold: 25 # Send warning when there are this many open tickets
+    Components:
+      - Type: container
+        AccentColor: "#FFA500"
+        Components:
+          - Type: section
+            Text:
+              Content:
+                - "# 🎫 High Support Volume Notice"
+                - ""
+                - ⚠️ We are currently experiencing higher than usual ticket volume.
+                - ""
+                - "## Current Status"
+                - "> 📊 **Active Tickets:** {openTickets}"
+                - "> ⏱️ **Est. Response Time:** 24-48 hours"
+                - "> 🔄 **Status:** Processing tickets in order received"
+                - ""
+                - "## Need Immediate Help?"
+                - "• Review our [Documentation](https://feather.dragonshosting.nl)"
+                - "• Join our [Community](https://discord.gg/DragonsHostingbot)"
+            Accessory:
+              Type: thumbnail
+              Media:
+                URL: "https://i.imgur.com/1FGL7XO.png"
+          - Type: separator
+          - Type: media_gallery
+            Items:
+              - Media:
+                  URL: "https://i.imgur.com/LbjDuZ8.png"
+          - Type: separator
+          - Type: text_display
+            Content: "-# Your ticket will still be created • Thank you for your patience"
+  CloseReasons:
+    Enabled: true
+    DefaultReason: "No reason provided"
+    Reasons:
+      - name: "Issue Resolved"
+        emoji: "✅"
+        value: "resolved"
+      - name: "User Request"
+        emoji: "👋"
+        value: "user_request"
+      - name: "Inactive"
+        emoji: "⏰"
+        value: "inactive"
+      - name: "Invalid"
+        emoji: "❌"
+        value: "invalid"
+    AllowCustomReason: true
+
+
+  StaffMentionAlert:
+    Enabled: true
+    AlertStatuses: ["offline", "idle", "dnd"]
+    EmbedColor: "#FFA500"
+    ShowAlternatives: true
+    AlternativesTitle: "🟢 Available Staff"
+    Messages:
+      Offline: "⚠️ {staff} is currently **offline** and may not see your message right away."
+      Idle: "⚠️ {staff} is currently **away** and may take longer to respond."
+      DND: "⚠️ {staff} has **Do Not Disturb** enabled and may not respond immediately."
+
+# ===========================================================================
+# CLOSE REQUEST SYSTEM
+# ===========================================================================
+# Allows staff to request the ticket creator to close the ticket
+# The user can accept or decline the request
+CloseRequest:
+  Enabled: true
+  DefaultReason: "Issue has been resolved"
+  AutoCloseOnAccept: true
+  
+  Components:
+    - Type: container
+      AccentColor: "#FFA500"
+      Components:
+        - Type: text_display
+          Content:
+            - "# 📩 Close Request"
+            - ""
+            - "Hey {user}!"
+            - ""
+            - "**{staff}** has requested to close this ticket."
+            - ""
+            - "**Reason:** {reason}"
+            - ""
+            - "If your issue has been resolved, please click **Accept** to close the ticket."
+            - "If you still need help, click **Decline** and let us know."
+        - Type: separator
+        - Type: text_display
+          Content: "-# Ticket System"
+  Buttons:
+    Accept:
+      Label: "Accept & Close"
+      Emoji: "✅"
+      Style: "Success"
+    Decline:
+      Label: "Decline"
+      Emoji: "❌"
+      Style: "Secondary"
+
+  Messages:
+    Accepted: "Close request accepted by {user}. Closing ticket..."
+    Declined: "Close request declined by {user}. Staff will continue to assist."
+    DeclinedStaff: "{user} has declined the close request. Please continue assisting them."
+# ===========================================================================
+# PRIORITY SYSTEM
+# ===========================================================================
+Priority:
+  Enabled: true
+  DefaultPriority: "Low"
+
+  Levels:
+    Low:
+      Roles: ["ROLE_ID", "ROLE_ID"] # Roles assigned this priority
+      Tag: ["ROLE_ID", "ROLE_ID"] # Roles to tag when a ticket is opened by this priority
+      MoveTop: false # Should their ticket be moved to the top of the category?
+
+    Medium:
+      Roles: ["ROLE_ID", "ROLE_ID"] # Roles assigned this priority
+      Tag: ["ROLE_ID", "ROLE_ID"] # Roles to tag when a ticket is opened by this priority
+      MoveTop: true # Should their ticket be moved to the top of the category?
+
+    High:
+      Roles: ["ROLE_ID", "ROLE_ID"] # Roles assigned this priority
+      Tag: ["ROLE_ID", "ROLE_ID"] # Roles to tag when a ticket is opened by this priority
+      MoveTop: true # Should their ticket be moved to the top of the category?
+
+# ===========================================================================
+# WORKING HOURS
+# ===========================================================================
+WorkingHours:
+  Enabled: false
+  Timezone: Europe/London # https://gist.github.com/diogocapela/12c6617fc87607d11fd62d2a4f42b02a
+  NonWorkingDays: ["Saturday", "Sunday"] # Days that are completely off - no working hours
+  Schedule: 
+    Monday: "16:00-22:00"
+    Tuesday: "16:00-22:00"
+    Wednesday: "16:00-22:00"
+    Thursday: "16:00-22:00"
+    Friday: "16:00-22:00"
+    Saturday: "16:00-22:00"
+    Sunday: "16:00-22:00"
+  allowOpenTickets: true # Should people be able to open tickets during the off hours? 
+
+WorkingEmbed: # This will be posted in the ticket if it's raised out of hours
+  Components:
+    - Type: container
+      AccentColor: "#1769FF"
+      Components:
+        - Type: text_display
+          Content:
+            - "# Support Ticket Notice"
+            - ""
+            - Please note that this ticket has been raised outside of working hours.
+            - Our response may be delayed.
+            - " "
+            - "Our working hours are between {workinghours_start} and {workinghours_end}."
+        - Type: separator
+        - Type: media_gallery
+          Items:
+            - Media:
+                URL: "https://images-ext-1.discordapp.net/external/OllWGq5ta58LX6KoA8yEVTMrI9L4BJ0iE_T0pE4TZvw/https/i.imgur.com/LbjDuZ8.png?format=webp&quality=lossless&width=1618&height=403"
+        - Type: separator
+        - Type: text_display
+          Content: "-# Dragonshosting | Ticket System"
+TicketPanelSettings:
+  Panel1:
+    Components:
+      - Type: container
+        AccentColor: "#00BFFF"
+        Components:
+          - Type: section
+            Text:
+              Content:
+                - "# Dragonshosting - Tickets Systeem"
+                - ""
+                - "Hallo jij daar! Als u vragen heeft voor ons team, kunt u deze hier stellen!"
+                - "Ons team staat klaar om u te helpen met al uw vragen."
+                - ""
+                - "Zorg ervoor dat u uw vraag toelicht nadat u het ticket heeft geopend!"
+            Accessory:
+              Type: thumbnail
+              Media:
+                URL: "{guildIcon}"
+          - Type: separator
+          - Type: media_gallery
+            Items:
+              - Media:
+                  URL: "https://cdn.discordapp.com/attachments/0/0/8b05f1b8d331225861a52920d32384ba_png_V42.jpg?ex=6a5df29a&is=6a5ca11a&hm=dbfc9e50275c55ffa6cd99fe468371490a8b6e90d743aeae6c25a6dec528c81c&"
+          - Type: separator
+          - Type: text_display
+            Content: "-# Dragonshosting | Ticket System"
+  Panel2:
+    Components:
+      - Type: container
+        AccentColor: "#00BFFF"
+        Components:
+          - Type: section
+            Text:
+              Content:
+                - "# Dragonshosting - Tickets"
+                - ""
+                - "Hallo daar!"
+                - "Hier kunt u een ticket maken voor de verjaardagen."
+                - "Om ons als staff team te helpen, graag op deze manier melden."
+                - "Voorbeeld: (2001-05-10) druk hieronder op de verjaardag knop."
+            Accessory:
+              Type: thumbnail
+              Media:
+                URL: "{guildIcon}"
+          - Type: separator
+          - Type: media_gallery
+            Items:
+              - Media:
+                  URL: "https://cdn.discordapp.com/attachments/0/0/8b05f1b8d331225861a52920d32384ba_png_V42.jpg?ex=6a5df2b5&is=6a5ca135&hm=40a8cc4f9c175a1a3347c7be9fdbb271930d3b4986cf78b237ed4c82e9800b03&"
+          - Type: separator
+          - Type: text_display
+            Content: "-# Dragonshosting | Verjaardag Tickets"
+  Panel3:
+    Components:
+      - Type: container
+        AccentColor: "#1769FF"
+        Components:
+          - Type: section
+            Text:
+              Content:
+                - "# Dragonshosting - Sollicitaties"
+                - ""
+                - "Wil je solliciteren voor het Dragonshosting staffteam?"
+                - "Kies hieronder de functie waarvoor je wilt solliciteren."
+                - ""
+                - "De bot opent automatisch een sollicitatie-ticket en zet je ingevulde sollicitatiebrief direct in het ticket."
+                - "Vul alles serieus en volledig in. Onvolledige sollicitaties kunnen worden afgewezen."
+            Accessory:
+              Type: thumbnail
+              Media:
+                URL: "{guildIcon}"
+          - Type: separator
+          - Type: text_display
+            Content: "-# Dragonshosting | Sollicitatie Tickets"
+TicketTranscript:
+  Type: WEB # TXT, WEB
+  Save: true
+  MinMessages: "1"
+  SavePath: ./transcripts/  # This will save in a transcripts folder in your bot's root directory
+
+# ===========================================================================
+# TICKET CREATION TEMPLATES
+# ===========================================================================
+# {ticketType} displays the ticket type
+# {user} is @John James
+# {guild} displays the guild 
+# {question} question array
+# {answer} answer array
+# {userIcon} displays the user's icon
+TicketCreation:
+  Default:
+    Followup:
+      Message: "Thank you {user} for reaching out! Please describe your issue in detail."
+    Components:
+      - Type: container
+        AccentColor: "#1769FF"
+        Components:
+          - Type: section
+            Text:
+              Content:
+                - "# 🎫 New Support Ticket"
+                - ""
+                - "Welcome to our Support System, {user}!"
+                - ""
+                - "**Ticket Type:** {ticketType}"
+                - "**Expected Response Time:** Within 24 hours"
+                - "**Claimed By:** {claimer}"
+                - ""
+                - "{questions}"
+                - Our support team will assist you shortly.
+            Accessory:
+              Type: thumbnail
+              Media:
+                URL: "{userIcon}"
+          - Type: separator
+          - Type: text_display
+            Content: "-# Dragonshosting | Ticket System"
+    QuestionFormat:
+      - "**{question}**"
+      - "```{answer}```"
+
+  TicketType1:
+    Followup:
+      Message: "Thank you {user} for your purchase inquiry! Our sales team will assist you shortly."
+    Components:
+      - Type: container
+        AccentColor: "#00FF00"
+        Components:
+          - Type: section
+            Text:
+              Content:
+                - "# ️ New Purchase Support Ticket"
+                - ""
+                - "Welcome to our Sales Support, {user}!"
+                - ""
+                - "**Ticket Type:** {ticketType}"
+                - "**Expected Response Time:** Within 12 hours"
+                - "**Claimed By:** {claimer}"
+                - ""
+                - "{questions}"
+                - Our sales team will assist you shortly.
+            Accessory:
+              Type: thumbnail
+              Media:
+                URL: "{userIcon}"
+          - Type: separator
+          - Type: text_display
+            Content: "-# Dragonshosting | Sales Support"
+    QuestionFormat:
+      - "**{question}**"
+      - "```{answer}```"
+
+# ===========================================================================
+# ARCHIVE DESIGN
+# ===========================================================================
+ArchiveDesign:
+  Components:
+    - Type: container
+      AccentColor: "#2B2D31"
+      Components:
+        - Type: section
+          Text:
+            Content:
+              - "# Ticket Archived"
+              - ""
+              - "### 🎫 Ticket Status"
+              - This ticket has been closed and archived.
+              - ""
+              - "### 👤 Details"
+              - "> **Creator:** {userTag}"
+              - "> **Reason:** {reason}"
+              - ""
+              - "### ⚡ Quick Actions"
+              - • Use the buttons below to manage this ticket
+              - "• Need help? Create a new ticket"
+          Accessory:
+            Type: thumbnail
+            Media:
+              URL: "https://i.imgur.com/1SbfB8i.png"
+        - Type: separator
+        - Type: media_gallery
+          Items:
+            - Media:
+                URL: "https://i.imgur.com/LbjDuZ8.png"
+        - Type: separator
+        - Type: text_display
+          Content: "-# Dragonshosting • Ticket System"
+UserLeftDesign:
+  Components:
+    - Type: container
+      AccentColor: "#1769FF"
+      Components:
+        - Type: section
+          Text:
+            Content:
+              - "# User Alert"
+              - ""
+              - "The creator of this ticket, **{user}** has left the server."
+          Accessory:
+            Type: thumbnail
+            Media:
+              URL: "{userIcon}"
+        - Type: separator
+        - Type: text_display
+          Content: "-# User ID: {userId}"
+  Button:
+    Name: "Delete Ticket"
+    Emoji: "⛔"
+    Style: Secondary # Primary, Secondary, Success, Danger
+
+# ===========================================================================
+# TICKET TYPES
+# ===========================================================================
+
+TicketNotifications:
+  UserAdded:
+    Components:
+      - Type: container
+        AccentColor: "#22c55e"
+        Components:
+          - Type: text_display
+            Content:
+              - "## ➕ User Added"
+              - ""
+              - "<@{addedUser}> has been added to the ticket by <@{addedBy}>."
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket System"
+  UserRemoved:
+    Components:
+      - Type: container
+        AccentColor: "#ef4444"
+        Components:
+          - Type: text_display
+            Content:
+              - "## ➖ User Removed"
+              - ""
+              - "<@{removedUser}> has been removed from the ticket by <@{removedBy}>."
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket System"
+  Renamed:
+    Components:
+      - Type: container
+        AccentColor: "#3b82f6"
+        Components:
+          - Type: text_display
+            Content:
+              - "## ✏️ Ticket Renamed"
+              - ""
+              - "The ticket has been renamed to **{newName}** by <@{renamedBy}>."
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket System"
+  Transferred:
+    Components:
+      - Type: container
+        AccentColor: "#8b5cf6"
+        Components:
+          - Type: text_display
+            Content:
+              - "## 🔄 Ticket Transferred"
+              - ""
+              - "Ticket has been transferred to **{newType}** by <@{transferredBy}>."
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket System"
+  PriorityChanged:
+    Components:
+      - Type: container
+        AccentColor: "{priorityColor}"
+        Components:
+          - Type: text_display
+            Content:
+              - "## 📋 Priority Update"
+              - ""
+              - "Priority changed from **{oldPriority}** to **{newPriority}**"
+              - "Updated by: <@{changedBy}>"
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket System"
+  AlertCancelled:
+    Components:
+      - Type: container
+        AccentColor: "#22c55e"
+        Components:
+          - Type: text_display
+            Content:
+              - "## ✅ Alert Cancelled"
+              - ""
+              - "The alert for this ticket has been cancelled by <@{cancelledBy}>."
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket System"
+  Watch:
+    Components:
+      - Type: container
+        AccentColor: "#3b82f6"
+        Components:
+          - Type: text_display
+            Content:
+              - "## 👁️ Watcher Added"
+              - ""
+              - "<@{watcherId}> is now watching this ticket."
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket System"
+  CloseRequestSent:
+    Components:
+      - Type: container
+        AccentColor: "#22c55e"
+        Components:
+          - Type: text_display
+            Content: "✅ Close request sent to <@{userId}>."
+  Blacklist:
+    Added:
+      Components:
+        - Type: container
+          AccentColor: "#ef4444"
+          Components:
+            - Type: section
+              Text:
+                Content:
+                  - "## ⚠️ User Blacklisted"
+                  - ""
+                  - "<@{userId}> has been blacklisted from opening tickets."
+                  - ""
+                  - "**Reason:** {reason}"
+                  - "**Blacklisted By:** <@{addedBy}>"
+                  - "**Date:** {date}"
+              Accessory:
+                Type: thumbnail
+                Media:
+                  URL: "{userIcon}"
+            - Type: separator
+            - Type: text_display
+              Content: "-# Contact an admin if you believe this is a mistake."
+    View:
+      Components:
+        - Type: container
+          AccentColor: "#f59e0b"
+          Components:
+            - Type: section
+              Text:
+                Content:
+                  - "## 📋 Blacklist Information"
+                  - ""
+                  - "**User:** <@{userId}>"
+                  - "**Blacklisted By:** <@{addedBy}>"
+                  - "**Reason:** {reason}"
+                  - "**Date:** {date}"
+              Accessory:
+                Type: thumbnail
+                Media:
+                  URL: "{userIcon}"
+            - Type: separator
+            - Type: text_display
+              Content: "-# Contact an admin if you need more information."
+    Removed:
+      Components:
+        - Type: container
+          AccentColor: "#22c55e"
+          Components:
+            - Type: section
+              Text:
+                Content:
+                  - "## ✅ User Removed from Blacklist"
+                  - ""
+                  - "<@{userId}> has been removed from the blacklist."
+                  - ""
+                  - "**Removed By:** <@{removedBy}>"
+                  - "**Date:** {date}"
+              Accessory:
+                Type: thumbnail
+                Media:
+                  URL: "{userIcon}"
+            - Type: separator
+            - Type: text_display
+              Content: "-# The user can now open tickets again."
+    TempAdded:
+      Components:
+        - Type: container
+          AccentColor: "#ff8c00"
+          Components:
+            - Type: section
+              Text:
+                Content:
+                  - "## ⏱️ User Temporarily Blacklisted"
+                  - ""
+                  - "<@{userId}> has been temporarily blacklisted from opening tickets."
+                  - ""
+                  - "**Reason:** {reason}"
+                  - "**Duration:** {duration}"
+                  - "**Expires:** {expiresAt} ({expiresRelative})"
+                  - "**Blacklisted By:** <@{addedBy}>"
+                  - "**Date:** {date}"
+              Accessory:
+                Type: thumbnail
+                Media:
+                  URL: "{userIcon}"
+            - Type: separator
+            - Type: text_display
+              Content: "-# This blacklist will expire automatically."
+
+
+WatcherNotifications:
+  Message:
+    Components:
+      - Type: container
+        AccentColor: "#5865F2"
+        Components:
+          - Type: text_display
+            Content:
+              - "## 💬 New Message"
+              - ""
+              - "**Author:** <@{authorId}>"
+              - "**Message:** {content}"
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket #{ticketId} • {guildName}"
+  Claimed:
+    Components:
+      - Type: container
+        AccentColor: "#22c55e"
+        Components:
+          - Type: text_display
+            Content:
+              - "## 🔒 Ticket Claimed"
+              - ""
+              - "Ticket has been claimed by <@{claimerId}>."
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket #{ticketId} • {guildName}"
+  Unclaimed:
+    Components:
+      - Type: container
+        AccentColor: "#f59e0b"
+        Components:
+          - Type: text_display
+            Content:
+              - "## 🔓 Ticket Unclaimed"
+              - ""
+              - "Ticket has been unclaimed by <@{unclaimerId}>."
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket #{ticketId} • {guildName}"
+  Priority:
+    Components:
+      - Type: container
+        AccentColor: "{priorityColor}"
+        Components:
+          - Type: text_display
+            Content:
+              - "## 📋 Priority Changed"
+              - ""
+              - "Priority changed from **{oldPriority}** to **{newPriority}** by <@{changedBy}>."
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket #{ticketId} • {guildName}"
+  UserAdded:
+    Components:
+      - Type: container
+        AccentColor: "#5865F2"
+        Components:
+          - Type: text_display
+            Content:
+              - "## ➕ User Added"
+              - ""
+              - "<@{addedUser}> was added to the ticket by <@{addedBy}>."
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket #{ticketId} • {guildName}"
+  UserRemoved:
+    Components:
+      - Type: container
+        AccentColor: "#ef4444"
+        Components:
+          - Type: text_display
+            Content:
+              - "## ➖ User Removed"
+              - ""
+              - "<@{removedUser}> was removed from the ticket by <@{removedBy}>."
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket #{ticketId} • {guildName}"
+  Alert:
+    Components:
+      - Type: container
+        AccentColor: "#ef4444"
+        Components:
+          - Type: text_display
+            Content:
+              - "## ⚠️ Ticket Alert Sent"
+              - ""
+              - "An inactivity alert was sent. The ticket will close if no response is received."
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket #{ticketId} • {guildName}"
+  Closing:
+    Components:
+      - Type: container
+        AccentColor: "#ef4444"
+        Components:
+          - Type: text_display
+            Content:
+              - "## 🔒 Ticket Closing"
+              - ""
+              - "Ticket is being closed by <@{closedBy}>."
+              - "{reason}"
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket #{ticketId} • {guildName}"
+  CloseRequest:
+    Components:
+      - Type: container
+        AccentColor: "#f59e0b"
+        Components:
+          - Type: text_display
+            Content:
+              - "## 📩 Close Request"
+              - ""
+              - "A close request was sent by <@{requestedBy}>."
+              - "**Reason:** {reason}"
+          - Type: separator
+          - Type: text_display
+            Content: "-# Ticket #{ticketId} • {guildName}"
+
+TicketTypes:
+  AlgemeneVragen:
+    Enabled: true
+    Panel: "Panel1"
+    Name: "Algemene Vragen"
+    ChannelName: "ticket-{ticket-id}-algemeen-{user}"
+    ChannelTopic: "Dragonshosting ticket | Type: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: ["0"]
+    AutoAlert: "12h"
+    ArchiveCategory: [""]
+    SupportRole: ["0", "0"]
+    UserRole: [""]
+    TagSupport: false
+    TagCreator: true
+    RestrictDeletion: false
+    Claiming:
+      Enabled: true
+      Button:
+        Name: "Claim Ticket"
+        Style: "Secondary"
+      RestrictResponse: true
+      RestrictView: false
+      AnnounceClaim: true
+    Button:
+      Name: "Algemene Vragen"
+      Style: "Secondary"
+      Description: "Open een ticket voor algemene vragen"
+    Questions: []
+
+  UnbanAanvraag:
+    Enabled: true
+    Panel: "Panel1"
+    Name: "Unban Aanvraag"
+    ChannelName: "ticket-{ticket-id}-unban-{user}"
+    ChannelTopic: "Dragonshosting ticket | Type: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: ["0"]
+    AutoAlert: "12h"
+    ArchiveCategory: [""]
+    SupportRole: ["0", "0"]
+    UserRole: [""]
+    TagSupport: false
+    TagCreator: true
+    RestrictDeletion: false
+    Claiming:
+      Enabled: true
+      Button:
+        Name: "Claim Ticket"
+        Style: "Secondary"
+      RestrictResponse: true
+      RestrictView: false
+      AnnounceClaim: true
+    Button:
+      Name: "Unban Aanvraag"
+      Style: "Secondary"
+      Description: "Open een ticket voor een unban aanvraag"
+    Questions: []
+
+  Donaties:
+    Enabled: true
+    Panel: "Panel1"
+    Name: "Donaties"
+    ChannelName: "ticket-{ticket-id}-donatie-{user}"
+    ChannelTopic: "Dragonshosting ticket | Type: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: ["0"]
+    AutoAlert: "12h"
+    ArchiveCategory: [""]
+    SupportRole: ["0", "0"]
+    UserRole: [""]
+    TagSupport: false
+    TagCreator: true
+    RestrictDeletion: false
+    Claiming:
+      Enabled: true
+      Button:
+        Name: "Claim Ticket"
+        Style: "Secondary"
+      RestrictResponse: true
+      RestrictView: false
+      AnnounceClaim: true
+    Button:
+      Name: "Donaties"
+      Style: "Secondary"
+      Description: "Open een ticket voor donaties"
+    Questions: []
+
+  Verjaardag:
+    Enabled: true
+    Panel: "Panel2"
+    Name: "Verjaardag"
+    ChannelName: "ticket-{ticket-id}-verjaardag-{user}"
+    ChannelTopic: "Dragonshosting ticket | Type: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: ["0"]
+    AutoAlert: "12h"
+    ArchiveCategory: [""]
+    SupportRole: ["0", "0"]
+    UserRole: [""]
+    TagSupport: false
+    TagCreator: true
+    RestrictDeletion: false
+    Claiming:
+      Enabled: true
+      Button:
+        Name: "Claim Ticket"
+        Style: "Secondary"
+      RestrictResponse: true
+      RestrictView: false
+      AnnounceClaim: true
+    Button:
+      Name: "Verjaardag"
+      Style: "Secondary"
+      Description: "Meld je verjaardag aan"
+    Questions: []
+
+  ModeratorSollicitatie:
+    Enabled: true
+    Panel: "Panel3"
+    Name: "Moderator Sollicitatie"
+    ChannelName: "sollicitatie-{ticket-id}-moderator-{user}"
+    ChannelTopic: "Dragonshosting sollicitatie | Type: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: ["0"]
+    AutoAlert: "0"
+    ArchiveCategory: [""]
+    SupportRole: ["0", "0", "0", "0", "0", "0", "0", "0"]
+    UserRole: [""]
+    TagSupport: true
+    TagCreator: true
+    RestrictDeletion: true
+    Claiming:
+      Enabled: true
+      Button:
+        Name: "Claim Ticket"
+        Style: "Secondary"
+      RestrictResponse: true
+      RestrictView: false
+      AnnounceClaim: true
+    Button:
+      Name: "Moderator"
+      Style: "Secondary"
+      Description: "Solliciteer voor Moderator"
+    Questions: []
+
+  MarketingSollicitatie:
+    Enabled: true
+    Panel: "Panel3"
+    Name: "Marketing Sollicitatie"
+    ChannelName: "sollicitatie-{ticket-id}-marketing-{user}"
+    ChannelTopic: "Dragonshosting sollicitatie | Type: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: ["0"]
+    AutoAlert: "0"
+    ArchiveCategory: [""]
+    SupportRole: ["0", "0", "0", "0", "0", "0", "0", "0"]
+    UserRole: [""]
+    TagSupport: true
+    TagCreator: true
+    RestrictDeletion: true
+    Claiming:
+      Enabled: true
+      Button:
+        Name: "Claim Ticket"
+        Style: "Secondary"
+      RestrictResponse: true
+      RestrictView: false
+      AnnounceClaim: true
+    Button:
+      Name: "Marketing"
+      Style: "Secondary"
+      Description: "Solliciteer voor Marketing"
+    Questions: []
+
+  DeveloperSollicitatie:
+    Enabled: true
+    Panel: "Panel3"
+    Name: "Developer Sollicitatie"
+    ChannelName: "sollicitatie-{ticket-id}-developer-{user}"
+    ChannelTopic: "Dragonshosting sollicitatie | Type: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: ["0"]
+    AutoAlert: "0"
+    ArchiveCategory: [""]
+    SupportRole: ["0", "0", "0", "0", "0", "0", "0", "0"]
+    UserRole: [""]
+    TagSupport: true
+    TagCreator: true
+    RestrictDeletion: true
+    Claiming:
+      Enabled: true
+      Button:
+        Name: "Claim Ticket"
+        Style: "Secondary"
+      RestrictResponse: true
+      RestrictView: false
+      AnnounceClaim: true
+    Button:
+      Name: "Developer"
+      Style: "Secondary"
+      Description: "Solliciteer voor Developer"
+    Questions: []
+
+  MediaSollicitatie:
+    Enabled: true
+    Panel: "Panel3"
+    Name: "Media Sollicitatie"
+    ChannelName: "sollicitatie-{ticket-id}-media-{user}"
+    ChannelTopic: "Dragonshosting sollicitatie | Type: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: ["0"]
+    AutoAlert: "0"
+    ArchiveCategory: [""]
+    SupportRole: ["0", "0", "0", "0", "0", "0", "0", "0"]
+    UserRole: [""]
+    TagSupport: true
+    TagCreator: true
+    RestrictDeletion: true
+    Claiming:
+      Enabled: true
+      Button:
+        Name: "Claim Ticket"
+        Style: "Secondary"
+      RestrictResponse: true
+      RestrictView: false
+      AnnounceClaim: true
+    Button:
+      Name: "Media"
+      Style: "Secondary"
+      Description: "Solliciteer voor Media"
+    Questions: []
+
+  ManagerSollicitatie:
+    Enabled: true
+    Panel: "Panel3"
+    Name: "Manager Sollicitatie"
+    ChannelName: "sollicitatie-{ticket-id}-manager-{user}"
+    ChannelTopic: "Dragonshosting sollicitatie | Type: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: ["0"]
+    AutoAlert: "0"
+    ArchiveCategory: [""]
+    SupportRole: ["0", "0", "0", "0", "0", "0", "0", "0"]
+    UserRole: [""]
+    TagSupport: true
+    TagCreator: true
+    RestrictDeletion: true
+    Claiming:
+      Enabled: true
+      Button:
+        Name: "Claim Ticket"
+        Style: "Secondary"
+      RestrictResponse: true
+      RestrictView: false
+      AnnounceClaim: true
+    Button:
+      Name: "Manager"
+      Style: "Secondary"
+      Description: "Solliciteer voor Manager"
+    Questions: []
+
+  HelperSollicitatie:
+    Enabled: true
+    Panel: "Panel3"
+    Name: "Helper Sollicitatie"
+    ChannelName: "sollicitatie-{ticket-id}-helper-{user}"
+    ChannelTopic: "Dragonshosting sollicitatie | Type: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: ["0"]
+    AutoAlert: "0"
+    ArchiveCategory: [""]
+    SupportRole: ["0", "0", "0", "0", "0", "0", "0", "0"]
+    UserRole: [""]
+    TagSupport: true
+    TagCreator: true
+    RestrictDeletion: true
+    Claiming:
+      Enabled: true
+      Button:
+        Name: "Claim Ticket"
+        Style: "Secondary"
+      RestrictResponse: true
+      RestrictView: false
+      AnnounceClaim: true
+    Button:
+      Name: "Helper"
+      Style: "Secondary"
+      Description: "Solliciteer voor Helper"
+    Questions: []
+
+  BugfixSollicitatie:
+    Enabled: true
+    Panel: "Panel3"
+    Name: "Bug-fix Sollicitatie"
+    ChannelName: "sollicitatie-{ticket-id}-bugfix-{user}"
+    ChannelTopic: "Dragonshosting sollicitatie | Type: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: ["0"]
+    AutoAlert: "0"
+    ArchiveCategory: [""]
+    SupportRole: ["0", "0", "0", "0", "0", "0", "0", "0"]
+    UserRole: [""]
+    TagSupport: true
+    TagCreator: true
+    RestrictDeletion: true
+    Claiming:
+      Enabled: true
+      Button:
+        Name: "Claim Ticket"
+        Style: "Secondary"
+      RestrictResponse: true
+      RestrictView: false
+      AnnounceClaim: true
+    Button:
+      Name: "Bug-fix"
+      Style: "Secondary"
+      Description: "Solliciteer voor Bug-fix"
+    Questions: []
+
+  TicketSupportSollicitatie:
+    Enabled: true
+    Panel: "Panel3"
+    Name: "Ticket Support Sollicitatie"
+    ChannelName: "sollicitatie-{ticket-id}-ticketsupport-{user}"
+    ChannelTopic: "Dragonshosting sollicitatie | Type: {ticketType} | User: {userid} | Priority: {priority}"
+    CategoryID: ["0"]
+    AutoAlert: "0"
+    ArchiveCategory: [""]
+    SupportRole: ["0", "0", "0", "0", "0", "0", "0", "0"]
+    UserRole: [""]
+    TagSupport: true
+    TagCreator: true
+    RestrictDeletion: true
+    Claiming:
+      Enabled: true
+      Button:
+        Name: "Claim Ticket"
+        Style: "Secondary"
+      RestrictResponse: true
+      RestrictView: false
+      AnnounceClaim: true
+    Button:
+      Name: "Ticket Support"
+      Style: "Secondary"
+      Description: "Solliciteer voor Ticket Support"
+    Questions: []
+
+Alert:
+  Enabled: true
+  Time: "12h"
+  DM:
+    Enabled: true
+    LogFailures: false # Whether to log DM failures in the ticket channel
+    Components:
+      - Type: container
+        AccentColor: "#FF0000"
+        Components:
+          - Type: text_display
+            Content:
+              - "# ⚠️ Ticket Alert"
+              - ""
+              - "Hello {user}"
+              - " "
+              - "**Ticket Information**"
+              - "> **Server:** {guild}"
+              - "> **Time Until Close:** {time}"
+              - "> **Reason:** {reason}"
+              - " "
+              - "**⚠️ Action Required**"
+              - Your ticket requires attention and will be automatically closed if no response is received.
+              - Click the button below to go to your ticket.
+          - Type: separator
+          - Type: text_display
+            Content: "-# Dragonshosting | Ticket System"
+    Button:
+      Label: "Go to Ticket"
+      Emoji: "🎫"
+
+  Embed:
+    Title: "Support Ticket Notice"
+    Description:
+      - "**Ticket Information**"
+      - "> **User:** {user}"
+      - "> **Time Until Close:** {time}"
+      - "> **Reason:** {reason}"
+      - " "
+      - "**⚠️ Action Required**"
+      - "This ticket requires attention and will be automatically closed if no response is received."
+    Footer:
+      Text: "Dragonshosting | Ticket System"
+      Icon: "https://i.imgur.com/w5XxKpc.png"
+    Author:
+      Text: "Dragonshosting Support"
+      Icon: "https://i.imgur.com/w5XxKpc.png"
+    Color: "#FF0000"
+    Image: "https://images-ext-1.discordapp.net/external/OllWGq5ta58LX6KoA8yEVTMrI9L4BJ0iE_T0pE4TZvw/https/i.imgur.com/LbjDuZ8.png?format=webp&quality=lossless&width=1618&height=403"
+    Thumbnail: ""
+    Button:
+      Label: "Close Ticket"
+      Emoji: "🔒"
+      Style: "Danger" # Primary, Secondary, Success, Danger
+
+# ===========================================================================
+# TICKET CLOSURE DM
+# ===========================================================================
+TicketClosureDM:
+  Enabled: true
+  Transcript: true
+  Components:
+    - Type: container
+      AccentColor: "#1769FF"
+      Components:
+        - Type: section
+          Text:
+            Content:
+              - "# Ticket Closure Notification"
+              - ""
+              - "{userTag}, your ticket in {guild} has been closed."
+              - " "
+              - "**Ticket Summary**"
+              - "> **Messages:** {messageCount}"
+              - "> **Priority:** {priority}"
+              - "> **Handled By:** {claimer}"
+              - "> **Close Reason:** {reason}"
+              - " "
+              - "We value your feedback! Please leave us a review below."
+          Accessory:
+            Type: thumbnail
+            Media:
+              URL: "https://i.imgur.com/w5XxKpc.png"
+        - Type: separator
+        - Type: media_gallery
+          Items:
+            - Media:
+                URL: "https://images-ext-1.discordapp.net/external/OllWGq5ta58LX6KoA8yEVTMrI9L4BJ0iE_T0pE4TZvw/https/i.imgur.com/LbjDuZ8.png?format=webp&quality=lossless&width=1618&height=403"
+        - Type: separator
+        - Type: text_display
+          Content: "-# Dragonshosting | Ticket System"
+Reviews:
+  Enabled: false
+  Placeholder: "Rate us!"
+  ButtonEmoji: "⭐"
+  ChannelID: ["CHANNEL", ""]
+  ButtonStyle: "Secondary" # Primary, Secondary, Success, Danger
+  
+  # Multiple rating questions that will appear as select dropdowns in the modal
+  Questions:
+    1:
+      ID: "support_quality"
+      Label: "Support Quality (1-5)"
+      Description: "Rate the quality of support you received"
+      Required: true
+      Options:
+        - Label: "Very Poor"
+          Value: "1"
+          Emoji: "😞"
+        - Label: "Poor"
+          Value: "2"
+          Emoji: "😐"
+        - Label: "Average"
+          Value: "3"
+          Emoji: "🙂"
+        - Label: "Good"
+          Value: "4"
+          Emoji: "😊"
+        - Label: "Excellent"
+          Value: "5"
+          Emoji: "😍"
+  
+  # Optional feedback text input
+  FeedbackInput:
+    Enabled: false # Should the bot ask the user why for the review they gave?
+    Label: "Additional Feedback"
+    Placeholder: "Please share any additional thoughts or suggestions..."
+    Style: "Paragraph" # Short, Paragraph
+    Required: false
+    MaxLength: 1000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  Components:
+    - Type: container
+      AccentColor: "#FFD700"
+      Components:
+        - Type: section
+          Text:
+            Content:
+              - "# ⭐ Ticket Review"
+              - ""
+              - "### Review Submitted"
+              - ""
+              - "**Ticket Information**"
+              - "> **Creator:** {ticketCreator}"
+              - "> **Ticket:** {channelName}"
+              - "> **Handled By:** {claimer}"
+              - ""
+              - "**Ratings**"
+              - "{ratings}"
+              - ""
+              - "**Additional Feedback**"
+              - "```{feedback}```"
+          Accessory:
+            Type: thumbnail
+            Media:
+              URL: "{userIcon}"
+        - Type: separator
+        - Type: text_display
+          Content: "-# Dragonshosting | Ticket Reviews"
+Logs:
+  Close: 
+    Embed:
+      Title: "**Ticket Closure**"
+      Description:
+        - "**Closure**"
+        - "> Ticket has been closed by {userTag}."
+        - "> **Reason:** {reason}"
+        - " "
+        - "**Information**"
+        - "> **Creator:** {ticketCreator}"
+        - "> **Messages:** {messageCount}"
+        - "> **Priority:** {priority}"
+        - "> **Claimed By:** {claimer}"
+        - " "
+        - "**Ticket Channel**"
+        - "> {channelName}"
+        - " " 
+      Footer:
+        Text: "Dragonshosting | Ticket System"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Author:
+        Text: "Ticket System"
+        Icon: "https://i.imgur.com/w5XxKpc.png"
+      Color: "#1769FF"
+      Image: "https://images-ext-1.discordapp.net/external/OllWGq5ta58LX6KoA8yEVTMrI9L4BJ0iE_T0pE4TZvw/https/i.imgur.com/LbjDuZ8.png?format=webp&quality=lossless&width=1618&height=403"
+      Thumbnail: "https://i.imgur.com/w5XxKpc.png"
+      ReviewFormat: "> **Review:** `{review}`"
+    ReviewFormat:
+      AverageRating: "Average Rating"
+      Rating: "Rating"
+      Review: "Review"
+      AdditionalFeedback: "Additional Feedback"
+      NoRating: "No Rating Yet"
+      CloseReason: "Close Reason"
+
