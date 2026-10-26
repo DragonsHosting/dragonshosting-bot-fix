@@ -1,6 +1,7 @@
 const { EmbedBuilder, ChannelType } = require('discord.js');
 const UserData = require('../../../models/UserData');
 const { getConfig, getLang, getCommands } = require('../../../utils/core/configLoader.js');
+const { evaluateArithmeticExpression } = require('../../../utils/core/safeMath.js');
 const { getLogChannel } = require('../../../utils/handlers/messageUtils.js');
 const { sendComponentsV2Message, createSimplePlaceholderReplacer } = require('../../../utils/core/componentsV2Builder.js');
 
@@ -28,7 +29,7 @@ function calculateXPNeeded(level) {
     if (config.LevelingSystem.UseFormula && config.LevelingSystem.Formula) {
         try {
             const formula = config.LevelingSystem.Formula.replace(/\{level\}/g, (level + 1).toString());
-            const result = eval(formula.replace(/\^/g, '**'));
+            const result = evaluateArithmeticExpression(formula);
             return Math.max(1, Math.floor(result));
         } catch (error) {
             console.error('Error evaluating XP formula:', error);
