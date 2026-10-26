@@ -1,18 +1,87 @@
-# Dragonshosting Discord bot template
+# DragonsHosting Discord Bot
 
-This template is based on the bot source currently running on the Dragonshosting hosting panel (version 1.9.6, Node.js 22). Runtime files, server IDs, transcript contents, credentials, and deployment data have been removed or blanked.
+![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=node.js&logoColor=white)
+![Discord.js](https://img.shields.io/badge/Discord.js-14-5865F2?logo=discord&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-blue)
+![Status](https://img.shields.io/badge/Public%20Template-Sanitized-success)
 
-## Install
+A public, sanitized version of the Discord bot used within **DragonsHosting**.
 
-1. Use Node.js 22 and run `npm ci` in the repository root.
-2. Copy `.env.example` to `.env` for local setup, or set those values in the hosting panel. Never commit `.env`.
-3. Set `BOT_TOKEN`, `SESSION_SECRET`, and `MONGODB_URI`. Add the OAuth application values `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET`, `DISCORD_REDIRECT_URI`, and `APP_URL`.
-4. In the Discord Developer Portal, register the exact value of `DISCORD_REDIRECT_URI` under the application's OAuth2 redirect URLs. For the default dashboard API route, it ends with `/api/auth/callback`.
-5. Set `DASHBOARD_LOGIN_ROLES` to comma-separated staff role IDs, or set the role IDs under `Dashboard.Permissions.Dashboard.Login` in `config/modules/dashboard.yml`. The dashboard denies login while no valid role IDs are configured.
-6. Run `npm start`. Run `npm run build` when rebuilding the dashboard UI.
+This repository is intended as a usable template and project showcase. Runtime files, production server IDs, transcript contents, credentials and private deployment data are removed or left blank.
 
-The dashboard login uses Discord OAuth2 authorization code flow, validates a one-time session-bound `state`, and checks that the Discord user has an allowed role. The OAuth client secret stays on the server. Only the `identify` scope is requested.
+## Features
 
-`config/dragonshosting-transcript-upload.json` is a disabled, empty example. Do not add live DirectAdmin credentials, bot tokens, OAuth secrets, database URLs, webhooks, or real server configuration to this public template.
+- Ticket system and transcript handling
+- Moderation and staff tools
+- Discord OAuth2 dashboard with role-based access
+- Giveaways, suggestions and reaction roles
+- Leveling and economy systems
+- Music and utility modules
+- Security and anti-abuse tooling
+- Server backup functionality
+- Optional FeatherPanel integration
+- Separate authenticated transcript dashboard
 
-The `transcript-site-dashboard/` folder contains the Discord-authenticated PHP version of the separate transcript website. Its private OAuth config belongs outside `public_html`; see that folder's README before deploying it.
+## Project structure
+
+| Folder | Purpose |
+| --- | --- |
+| `addons/` | Optional bot modules and feature packages |
+| `config/` | Public example configuration |
+| `dashboard/` | Web dashboard frontend and backend |
+| `events/` | Discord event handlers |
+| `models/` | Database models |
+| `transcript-site-dashboard/` | Separate authenticated transcript viewer |
+| `utils/` | Shared bot, dashboard and security utilities |
+
+## Installation
+
+1. Install **Node.js 22**.
+2. Run `npm ci` in the repository root.
+3. Copy `.env.example` to `.env`, or configure the same variables in your hosting panel.
+4. Configure the required values:
+   - `BOT_TOKEN`
+   - `SESSION_SECRET`
+   - `MONGODB_URI`
+   - `DISCORD_CLIENT_ID`
+   - `DISCORD_CLIENT_SECRET`
+   - `DISCORD_REDIRECT_URI`
+   - `APP_URL`
+5. Register the exact `DISCORD_REDIRECT_URI` in the Discord Developer Portal. The default dashboard callback ends with `/api/auth/callback`.
+6. Configure `DASHBOARD_LOGIN_ROLES`, or set the allowed roles in `config/modules/dashboard.yml`.
+7. Start the bot with `npm start`.
+
+To rebuild the dashboard UI, run:
+
+```bash
+npm run build
+```
+
+## Security
+
+The public repository deliberately keeps production secrets outside the source code.
+
+- `.env` and generated/runtime files are ignored by Git.
+- Bot tokens, OAuth secrets, database credentials, DirectAdmin credentials and API keys belong in environment variables or private configuration.
+- The dashboard uses Discord OAuth2 with a one-time session-bound state value.
+- Dashboard access can be restricted by Discord role.
+- CSRF protection is used for authenticated dashboard actions.
+- XP formulas use a restricted arithmetic parser instead of JavaScript `eval()`.
+
+Never commit live credentials, database connection strings, Discord webhooks or production-only configuration.
+
+## Transcript dashboard
+
+The `transcript-site-dashboard/` directory contains the PHP version of the private transcript archive.
+
+Its private OAuth configuration should remain outside `public_html`. See the README in that directory before deployment.
+
+## Public template
+
+Some values are intentionally empty or replaced with examples. Users of this repository must provide their own Discord application, database, server IDs and hosting configuration.
+
+The public source can be inspected and reused without exposing the private DragonsHosting production environment.
+
+## License
+
+Released under the **MIT License**. See `LICENSE` for details.
